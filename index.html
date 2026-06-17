@@ -530,6 +530,23 @@
     }
     .line-float:hover { transform: scale(1.1); box-shadow: 0 6px 28px rgba(6,199,85,0.55); }
 
+    .scroll-top {
+      position: fixed; bottom: 86px; right: 24px; z-index: 999;
+      width: 44px; height: 44px; border-radius: 50%;
+      background: rgba(13,11,20,0.9); border: 1px solid rgba(241,196,15,0.3);
+      color: var(--yellow); cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      backdrop-filter: blur(8px);
+      opacity: 0; visibility: hidden; transform: translateY(10px);
+      transition: opacity 0.25s, transform 0.25s, visibility 0.25s, background 0.15s;
+      font-size: 18px;
+    }
+    .scroll-top.show { opacity: 1; visibility: visible; transform: translateY(0); }
+    .scroll-top:hover { background: rgba(241,196,15,0.12); }
+
+    @keyframes pulse-load { 0%,100% { opacity: 0.3; } 50% { opacity: 0.7; } }
+    .stat-loading { animation: pulse-load 1.2s ease-in-out infinite; }
+
     /* ── FADE IN ── */
     .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
     .fade-in.visible { opacity: 1; transform: translateY(0); }
@@ -542,6 +559,7 @@
       .nav-hamburger { display: flex; }
       .hero-content { padding: 0 20px 44px; }
       .stat-row { grid-template-columns: 1fr 1fr; }
+      .hero { height: 88vh; min-height: 520px; }
       .stat-cell:nth-child(2) { border-right: none; }
       .stat-cell:nth-child(3) { border-right: 1px solid var(--border); }
       .countdown-section { padding: 24px 20px; flex-direction: column; gap: 16px; }
@@ -609,8 +627,7 @@
     <p class="hero-sub"><b>กรุงเทพฯ → มหาวิทยาลัยเชียงใหม่</b> &nbsp;·&nbsp; ~785 กม. &nbsp;·&nbsp; 14–19 NOV 2026</p>
     <div class="hero-btns">
       <a href="https://forms.gle/ir2cG4w7jTnj2szc9" target="_blank" class="btn-primary">สมัครเข้าร่วมปั่น</a>
-      <a href="riders.html" class="btn-ghost">ทะเบียนนักปั่น</a>
-      <a href="order.html" class="btn-ghost">สั่งของที่ระลึก</a>
+      <a href="#route" class="btn-ghost">ดูเส้นทาง</a>
     </div>
   </div>
 </section>
@@ -619,7 +636,7 @@
 <div class="stat-row fade-in">
   <div class="stat-cell"><div class="stat-num">785</div><div class="stat-label">KM Total</div></div>
   <div class="stat-cell"><div class="stat-num">6</div><div class="stat-label">Days on Road</div></div>
-  <div class="stat-cell"><div class="stat-num" id="rider-count">60+</div><div class="stat-label">Riders</div></div>
+  <div class="stat-cell"><div class="stat-num" id="rider-count">··</div><div class="stat-label">Riders</div></div>
   <div class="stat-cell"><div class="stat-num">9</div><div class="stat-label">Years Running</div></div>
 </div>
 
@@ -641,7 +658,7 @@
 </div>
 
 <!-- ROUTE -->
-<section class="section-wrap fade-in">
+<section class="section-wrap fade-in" id="route">
   <div class="eyebrow">ROUTE DATA</div>
   <div class="route-head">
     <div class="route-headline">6 DAYS<br>OF ROAD</div>
@@ -716,6 +733,14 @@
     <div class="faq-item">
       <div class="faq-q">EQUIPMENT</div>
       <div class="faq-a">ต้องมีจักรยาน Road/Gravel เป็นของตัวเอง อุปกรณ์พื้นฐาน: หมวก ถุงมือ แว่นตา ชุดปั่น ทีมงานส่ง checklist ให้หลังสมัคร</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">หลังสมัคร / NEXT STEP</div>
+      <div class="faq-a">เมื่อสมัครและชำระเงินเรียบร้อย <strong><a href="https://line.me/R/ti/g/btYTLg3fnb" target="_blank" style="color:var(--yellow);text-decoration:underline;">เข้ากลุ่ม Line รวมนักปั่น</a></strong> เพื่อรับข่าวสาร ตารางซ้อม และรายละเอียดการเดินทางทั้งหมด</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">สอบถามเพิ่มเติม / CONTACT</div>
+      <div class="faq-a">ทักสอบถามได้ทาง <strong>Line OA</strong> หรือ <strong>Facebook</strong> ของงาน ทีมงานพร้อมตอบทุกคำถามก่อนตัดสินใจสมัคร</div>
     </div>
   </div>
 </section>
@@ -821,6 +846,9 @@
   </svg>
 </a>
 
+<!-- SCROLL TO TOP -->
+<button class="scroll-top" id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="กลับขึ้นบน">↑</button>
+
 <script>
   /* hamburger */
   function toggleMenu() {
@@ -873,15 +901,23 @@
 
   /* rider count — fetch real data from riders sheet */
   (async function(){
+    var el = document.getElementById('rider-count');
+    el.classList.add('stat-loading');
     try {
       var res = await fetch('https://script.google.com/macros/s/AKfycbwcFk6renjBy2xcWjovf5MY6r_MtasbiQ-8nExD4jYP8JR1xmx2PCLSIQMt92Uc6n_seA/exec');
       var data = await res.json();
       var count = Array.isArray(data) ? data.length : (data.riders ? data.riders.length : null);
-      if (count !== null && count > 0) {
-        document.getElementById('rider-count').textContent = count + '+';
-      }
+      if (count !== null && count > 0) el.textContent = count + '+';
     } catch(e) {}
+    el.classList.remove('stat-loading');
   })();
+
+  /* scroll to top button */
+  var scrollBtn = document.getElementById('scroll-top');
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 600) scrollBtn.classList.add('show');
+    else scrollBtn.classList.remove('show');
+  });
 
   /* fade in */
   var obs = new IntersectionObserver(function(entries) {
