@@ -39,7 +39,7 @@
     .nav-links a {
       font-family: 'IBM Plex Mono', monospace;
       font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
-      color: rgba(240,237,232,0.38); text-decoration: none;
+      color: rgba(240,237,232,0.55); text-decoration: none;
       padding: 8px 16px;
       border-left: 1px solid var(--border);
       transition: color 0.15s;
@@ -117,7 +117,10 @@
       position: relative; width: 100%; height: 100vh;
       overflow: hidden; display: flex; align-items: flex-end;
     }
-    .hero-video-wrap { position: absolute; inset: 0; pointer-events: none; }
+    .hero-video-wrap {
+      position: absolute; inset: 0; pointer-events: none;
+      background: #0d0b14 url('https://img.youtube.com/vi/yvGUhCFThQE/maxresdefault.jpg') center/cover no-repeat;
+    }
     .hero-video-wrap iframe {
       position: absolute; top: 50%; left: 50%;
       width: 177.78vh; min-width: 100%;
@@ -400,14 +403,14 @@
     /* ── TESTIMONIAL ── */
     .quote {
       font-family: 'IBM Plex Sans Thai Condensed', sans-serif;
-      font-size: clamp(22px, 4.5vw, 38px); font-weight: 700; line-height: 1.2;
-      color: var(--white); max-width: 620px;
-      padding-left: 20px; position: relative; margin: 4px 0 24px;
+      font-size: clamp(28px, 5.5vw, 52px); font-weight: 700; line-height: 1.15;
+      color: var(--white); max-width: 900px;
+      padding-left: 28px; position: relative; margin: 8px 0 28px;
     }
     .quote::before {
-      content: '"'; position: absolute; left: 0; top: -4px;
-      font-size: 56px; line-height: 1; font-family: 'IBM Plex Mono', monospace;
-      color: rgba(241,196,15,0.1);
+      content: '"'; position: absolute; left: 0; top: -8px;
+      font-size: 76px; line-height: 1; font-family: 'IBM Plex Mono', monospace;
+      color: rgba(241,196,15,0.12);
     }
     .byline { display: flex; align-items: center; gap: 14px; }
     .avatar {
@@ -588,8 +591,8 @@
 <!-- MARQUEE -->
 <div class="marquee-wrap">
   <div class="marquee-track">
-    <span class="mtext">CMU CHARITY CYCLING <span class="msep">·</span> 9TH EDITION <span class="msep">·</span> กรุงเทพฯ → เชียงใหม่ <span class="msep">·</span> 785 KM <span class="msep">·</span> 14–19 NOV 2026 <span class="msep">·</span> 6 DAYS <span class="msep">·</span> 60+ RIDERS <span class="msep">·</span> EARLY BIRD ฿6,000 <span class="msep">·</span> ปิดรับ 30 SEP 2026 <span class="msep">·</span></span>
-    <span class="mtext">CMU CHARITY CYCLING <span class="msep">·</span> 9TH EDITION <span class="msep">·</span> กรุงเทพฯ → เชียงใหม่ <span class="msep">·</span> 785 KM <span class="msep">·</span> 14–19 NOV 2026 <span class="msep">·</span> 6 DAYS <span class="msep">·</span> 60+ RIDERS <span class="msep">·</span> EARLY BIRD ฿6,000 <span class="msep">·</span> ปิดรับ 30 SEP 2026 <span class="msep">·</span></span>
+    <span class="mtext">CMU CHARITY CYCLING <span class="msep">·</span> 9TH EDITION <span class="msep">·</span> กรุงเทพฯ → เชียงใหม่ <span class="msep">·</span> 785 KM <span class="msep">·</span> 14–19 NOV 2026 <span class="msep">·</span> 6 DAYS <span class="msep">·</span> EARLY BIRD ฿6,000 <span class="msep">·</span> ปิดรับ 30 SEP 2026 <span class="msep">·</span></span>
+    <span class="mtext">CMU CHARITY CYCLING <span class="msep">·</span> 9TH EDITION <span class="msep">·</span> กรุงเทพฯ → เชียงใหม่ <span class="msep">·</span> 785 KM <span class="msep">·</span> 14–19 NOV 2026 <span class="msep">·</span> 6 DAYS <span class="msep">·</span> EARLY BIRD ฿6,000 <span class="msep">·</span> ปิดรับ 30 SEP 2026 <span class="msep">·</span></span>
   </div>
 </div>
 
@@ -597,7 +600,7 @@
 <section class="hero">
   <div class="hero-video-wrap">
     <iframe src="https://www.youtube.com/embed/yvGUhCFThQE?autoplay=1&mute=1&loop=1&playlist=yvGUhCFThQE&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1"
-      allow="autoplay; encrypted-media" allowfullscreen></iframe>
+      title="CMU Charity Cycling — วิดีโอบรรยากาศงานปั่นเพื่อน้อง" allow="autoplay; encrypted-media" allowfullscreen></iframe>
   </div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
@@ -614,10 +617,10 @@
 
 <!-- STAT ROW -->
 <div class="stat-row fade-in">
-  <div class="stat-cell"><div class="stat-num" id="stat-km">0</div><div class="stat-label">KM Total</div></div>
-  <div class="stat-cell"><div class="stat-num" id="stat-days">0</div><div class="stat-label">Days on Road</div></div>
-  <div class="stat-cell"><div class="stat-num" id="rider-count">0</div><div class="stat-label">Riders</div></div>
-  <div class="stat-cell"><div class="stat-num" id="stat-years">0</div><div class="stat-label">Years Running</div></div>
+  <div class="stat-cell"><div class="stat-num">785</div><div class="stat-label">KM Total</div></div>
+  <div class="stat-cell"><div class="stat-num">6</div><div class="stat-label">Days on Road</div></div>
+  <div class="stat-cell"><div class="stat-num" id="rider-count">60+</div><div class="stat-label">Riders</div></div>
+  <div class="stat-cell"><div class="stat-num">9</div><div class="stat-label">Years Running</div></div>
 </div>
 
 <!-- COUNTDOWN -->
@@ -638,7 +641,8 @@
 </div>
 
 <!-- ROUTE -->
-<section class="section-wrap fade-in route-section">
+<section class="section-wrap fade-in">
+  <div class="eyebrow">ROUTE DATA</div>
   <div class="route-head">
     <div class="route-headline">6 DAYS<br>OF ROAD</div>
     <div>
@@ -647,38 +651,10 @@
     </div>
   </div>
   <div id="route-rows"></div>
-
-  <div style="margin-top:28px">
-    <div style="font-family:'IBM Plex Mono',monospace;font-size:8px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(240,237,232,0.2);margin-bottom:8px;display:flex;align-items:center;gap:5px"><span style="color:rgba(241,196,15,0.2)">//</span> ROUTE MAP</div>
-    <svg id="route-svg" viewBox="0 0 560 130" xmlns="http://www.w3.org/2000/svg" style="width:100%;overflow:visible">
-      <path id="route-path"
-        d="M40,85 C80,85 80,45 120,45 C160,45 160,65 200,65 C240,65 240,52 280,52 C320,52 320,72 360,72 C400,72 400,58 440,58 C480,58 490,46 520,46"
-        stroke="rgba(241,196,15,0.45)" stroke-width="1.5" fill="none"
-        stroke-dasharray="600" stroke-dashoffset="600"
-        style="transition:stroke-dashoffset 2.8s cubic-bezier(0.4,0,0.2,1)"/>
-      <circle id="rd0" cx="40"  cy="85" r="4" fill="#f1c40f" opacity="0" style="transition:opacity 0.3s"/>
-      <circle id="rd1" cx="120" cy="45" r="3" fill="rgba(241,196,15,0.6)" opacity="0" style="transition:opacity 0.3s"/>
-      <circle id="rd2" cx="200" cy="65" r="3" fill="rgba(241,196,15,0.6)" opacity="0" style="transition:opacity 0.3s"/>
-      <circle id="rd3" cx="280" cy="52" r="3" fill="rgba(241,196,15,0.6)" opacity="0" style="transition:opacity 0.3s"/>
-      <circle id="rd4" cx="360" cy="72" r="3" fill="rgba(241,196,15,0.6)" opacity="0" style="transition:opacity 0.3s"/>
-      <circle id="rd5" cx="440" cy="58" r="3" fill="rgba(241,196,15,0.6)" opacity="0" style="transition:opacity 0.3s"/>
-      <circle id="rd6" cx="520" cy="46" r="5" fill="#f1c40f" opacity="0" style="transition:opacity 0.3s"/>
-      <text x="40"  y="105" text-anchor="middle" style="font-family:'IBM Plex Sans Thai Condensed',sans-serif;font-size:11px;font-weight:700;fill:#f0ede8">กรุงเทพฯ</text>
-      <text x="40"  y="116" text-anchor="middle" style="font-family:'IBM Plex Mono',monospace;font-size:8px;fill:rgba(240,237,232,0.25);letter-spacing:0.08em">BKK</text>
-      <text x="120" y="34"  text-anchor="middle" style="font-family:'IBM Plex Sans Thai Condensed',sans-serif;font-size:11px;font-weight:700;fill:#f0ede8">ลพบุรี</text>
-      <text x="120" y="22"  text-anchor="middle" style="font-family:'IBM Plex Mono',monospace;font-size:8px;fill:rgba(241,196,15,0.35);letter-spacing:0.06em">144 KM</text>
-      <text x="200" y="82"  text-anchor="middle" style="font-family:'IBM Plex Sans Thai Condensed',sans-serif;font-size:11px;font-weight:700;fill:#f0ede8">นครสวรรค์</text>
-      <text x="200" y="22"  text-anchor="middle" style="font-family:'IBM Plex Mono',monospace;font-size:8px;fill:rgba(241,196,15,0.35);letter-spacing:0.06em">150 KM</text>
-      <text x="280" y="40"  text-anchor="middle" style="font-family:'IBM Plex Sans Thai Condensed',sans-serif;font-size:11px;font-weight:700;fill:#f0ede8">กำแพงเพชร</text>
-      <text x="280" y="22"  text-anchor="middle" style="font-family:'IBM Plex Mono',monospace;font-size:8px;fill:rgba(241,196,15,0.35);letter-spacing:0.06em">121 KM</text>
-      <text x="360" y="90"  text-anchor="middle" style="font-family:'IBM Plex Sans Thai Condensed',sans-serif;font-size:11px;font-weight:700;fill:#f0ede8">ตาก</text>
-      <text x="360" y="22"  text-anchor="middle" style="font-family:'IBM Plex Mono',monospace;font-size:8px;fill:rgba(241,196,15,0.35);letter-spacing:0.06em">134 KM</text>
-      <text x="440" y="75"  text-anchor="middle" style="font-family:'IBM Plex Sans Thai Condensed',sans-serif;font-size:11px;font-weight:700;fill:#f0ede8">ลำปาง</text>
-      <text x="440" y="22"  text-anchor="middle" style="font-family:'IBM Plex Mono',monospace;font-size:8px;fill:rgba(241,196,15,0.35);letter-spacing:0.06em">120 KM</text>
-      <text x="520" y="35"  text-anchor="middle" style="font-family:'IBM Plex Sans Thai Condensed',sans-serif;font-size:11px;font-weight:700;fill:#f1c40f">เชียงใหม่</text>
-      <text x="520" y="22"  text-anchor="middle" style="font-family:'IBM Plex Mono',monospace;font-size:8px;fill:rgba(241,196,15,0.5);letter-spacing:0.06em">116 KM</text>
-      <text x="520" y="10"  text-anchor="middle" style="font-family:'IBM Plex Mono',monospace;font-size:8px;fill:rgba(241,196,15,0.35);letter-spacing:0.08em">FINISH</text>
-    </svg>
+  <div class="prog-track"><div class="prog-fill" id="prog-fill"></div></div>
+  <div class="prog-labels">
+    <span class="prog-label">BKK</span>
+    <span class="prog-label">FINISH · CMU</span>
   </div>
 </section>
 
@@ -702,6 +678,10 @@
       <div class="reg-period">ราคาปกติ · 1 ก.ย. เป็นต้นไป</div>
       <div class="reg-price">฿6,900</div>
       <div class="reg-sub">ต่อคน</div>
+      <div class="reg-deadline">
+        <div class="reg-dl-label">ปิดรับสมัคร</div>
+        <div class="reg-dl-date">30 SEPTEMBER 2026</div>
+      </div>
     </div>
     <div class="includes-box">
       <div class="includes-label">รวมในค่าสมัคร</div>
@@ -747,7 +727,7 @@
     ไม่คิดว่าตัวเองจะทำได้ แต่พอถึงเชียงใหม่วันสุดท้าย มันเป็นความรู้สึกที่อธิบายไม่ได้ — และอยากทำซ้ำ
   </div>
   <div class="byline">
-    <div class="avatar">PK</div>
+    <div class="avatar">งจ</div>
     <div>
       <div class="byline-name">งามจิตต์ สุขุมาลวัฒน์</div>
       <div class="byline-role">คณะวิทยาศาสตร์ · นักปั่นรุ่นที่ 8 · 2568</div>
@@ -781,7 +761,8 @@
   </div>
 </section>
 
-<!-- FUNDRAISING -->
+<!-- FUNDRAISING — ซ่อนไว้ก่อนจนกว่าจะมีข้อมูลยอดจริงจาก Sheets (อย่าแสดง 0% เพราะส่งสัญญาณลบ) -->
+<!--
 <section class="section-wrap fade-in" id="fund-section">
   <div class="eyebrow">FUNDRAISING</div>
   <div class="section-title">ยอดระดมทุน</div>
@@ -794,6 +775,8 @@
     <div class="fund-pct" id="fund-pct">0% ของเป้าหมาย</div>
   </div>
 </section>
+-->
+
 
 <!-- ABOUT -->
 <section class="section-wrap fade-in">
@@ -885,97 +868,26 @@
   }
   tick(); setInterval(tick, 1000);
 
-  /* route progress bar */
-  var routeDone = false;
+  /* progress bar */
+  setTimeout(function() { document.getElementById('prog-fill').style.width = '100%'; }, 400);
 
-  /* easing */
-  function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
-
-  /* stat counter animation */
-  function animCount(el, target, suffix, dur) {
-    suffix = suffix || '';
-    var start = Date.now();
-    var tick = function() {
-      var p = Math.min((Date.now() - start) / dur, 1);
-      var val = Math.round(easeOut(p) * target);
-      el.textContent = val.toLocaleString() + suffix;
-      if (p < 1) requestAnimationFrame(tick);
-    };
-    tick();
-  }
-
-  /* rider count — fetch real data then animate */
-  var riderCount = 60;
+  /* rider count — fetch real data from riders sheet */
   (async function(){
     try {
       var res = await fetch('https://script.google.com/macros/s/AKfycbwcFk6renjBy2xcWjovf5MY6r_MtasbiQ-8nExD4jYP8JR1xmx2PCLSIQMt92Uc6n_seA/exec');
       var data = await res.json();
       var count = Array.isArray(data) ? data.length : (data.riders ? data.riders.length : null);
-      if (count !== null && count > 0) riderCount = count;
+      if (count !== null && count > 0) {
+        document.getElementById('rider-count').textContent = count + '+';
+      }
     } catch(e) {}
   })();
 
-  /* fundraising — fetch จาก sheets (placeholder ใส่ 0 ไว้ก่อน) */
-  var fundData = { reg: 0, don: 0, merch: 0 };
-  var FUND_GOAL = 3000000;
-
-  function animFund(data) {
-    var total = data.reg + data.don + data.merch;
-    var dur = 2000, start = Date.now();
-    var timer = setInterval(function() {
-      var p = Math.min(easeOut((Date.now() - start) / dur), 1);
-      var cur = Math.round(p * total);
-      var pct = Math.round(cur / FUND_GOAL * 100);
-      document.getElementById('fund-current').textContent = '฿' + cur.toLocaleString();
-      document.getElementById('fund-fill').style.width = Math.min(pct, 100) + '%';
-      document.getElementById('fund-pct').textContent = pct + '% ของเป้าหมาย';
-      if (p >= 1) clearInterval(timer);
-    }, 16);
-  }
-
-  /* scroll-triggered — ทำงานทุก section เมื่อ scroll มาถึง */
-  var statDone = false, fundDone = false;
+  /* fade in */
   var obs = new IntersectionObserver(function(entries) {
-    entries.forEach(function(e) {
-      if (!e.isIntersecting) return;
-      e.target.classList.add('visible');
-
-      /* route SVG path */
-      if (e.target.classList.contains('route-section') && !routeDone) {
-        routeDone = true;
-        setTimeout(function() {
-          document.getElementById('route-path').style.strokeDashoffset = '0';
-          var delays = [0,400,800,1100,1400,1700,2000];
-          for (var i = 0; i <= 6; i++) {
-            (function(idx) {
-              setTimeout(function() {
-                document.getElementById('rd'+idx).style.opacity = '1';
-              }, delays[idx]);
-            })(i);
-          }
-        }, 200);
-      }
-
-      /* stat row */
-      if (e.target.classList.contains('stat-row') && !statDone) {
-        statDone = true;
-        animCount(document.getElementById('stat-km'), 785, '+', 1800);
-        setTimeout(function(){ animCount(document.getElementById('stat-days'), 6, '', 1200); }, 200);
-        setTimeout(function(){ animCount(document.getElementById('rider-count'), riderCount, '+', 1400); }, 400);
-        setTimeout(function(){ animCount(document.getElementById('stat-years'), 9, '', 1000); }, 600);
-      }
-
-      /* fundraising */
-      if (e.target.id === 'fund-section' && !fundDone) {
-        fundDone = true;
-        animFund(fundData);
-      }
-    });
-  }, { threshold: 0.15 });
-
+    entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
   document.querySelectorAll('.fade-in').forEach(function(el) { obs.observe(el); });
-  var fundSec = document.getElementById('fund-section');
-  if (fundSec) obs.observe(fundSec);
 </script>
 </body>
 </html>
