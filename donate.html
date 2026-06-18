@@ -8,7 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;600;700&family=IBM+Plex+Sans+Thai+Condensed:wght@700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --dark: #1a1228;
+      --dark: #0d0b14;
       --purple:  #1a1528;
       --yellow:  #f1c40f;
       --yellow2: #e6b800;
@@ -24,7 +24,7 @@
     .nav-logo { font-family: 'IBM Plex Sans Thai Condensed', sans-serif; font-size: 17px; font-weight: 700; letter-spacing: 0.14em; color: var(--yellow); text-decoration: none; display: flex; align-items: center; gap: 10px; }
     .nav-logo img { width: 32px; height: 32px; object-fit: contain; }
     .nav-links { display: flex; gap: 0; list-style: none; }
-    .nav-links a { font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(240,237,232,0.38); text-decoration: none; padding: 8px 16px; border-left: 1px solid var(--border); transition: color 0.15s; }
+    .nav-links a { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(240,237,232,0.38); text-decoration: none; padding: 8px 16px; border-left: 1px solid var(--border); transition: color 0.15s; }
     .nav-links a:hover, .nav-links a.active { color: var(--white); }
     .nav-cta, .nav-links a.nav-cta { font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; background: var(--yellow); color: #0d0b14; padding: 8px 18px; border-radius: 2px; text-decoration: none; transition: background 0.15s; }
     .nav-cta:hover, .nav-links a.nav-cta:hover { background: var(--yellow2); color: #0d0b14; }
@@ -100,6 +100,31 @@
     .btn-submit:hover { background: var(--yellow2); transform: translateY(-2px); }
     .btn-submit:disabled { background: rgba(255,255,255,0.1); color: var(--muted); cursor: not-allowed; transform: none; }
 
+    /* SPONSOR SECTION */
+    .sponsor-intro { font-size: 14px; font-weight: 300; color: var(--muted); line-height: 1.85; margin-bottom: 24px; }
+    .sponsor-table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 6px; margin-bottom: 20px; }
+    .sponsor-table { width: 100%; border-collapse: collapse; min-width: 580px; }
+    .sponsor-table th { background: rgba(241,196,15,0.06); color: var(--yellow); font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 13px 14px; text-align: center; border-bottom: 1px solid var(--border); white-space: nowrap; }
+    .sponsor-table th:first-child { text-align: left; }
+    .sponsor-table td { padding: 13px 14px; font-size: 13px; font-weight: 300; color: var(--white); border-bottom: 1px solid var(--border); text-align: center; white-space: nowrap; }
+    .sponsor-table td:first-child { text-align: left; font-weight: 400; color: rgba(240,237,232,0.85); white-space: normal; min-width: 220px; }
+    .sponsor-table tr:last-child td { border-bottom: none; }
+    .sponsor-table tr:hover td { background: rgba(255,255,255,0.02); }
+    .sponsor-check { color: #4ade80; font-weight: 700; font-size: 15px; }
+    .sponsor-cross { color: rgba(240,237,232,0.18); font-size: 15px; }
+    .sponsor-note { font-size: 11px; font-weight: 300; color: rgba(240,237,232,0.3); line-height: 1.8; margin-bottom: 28px; }
+    .sponsor-btn-download { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 15px; background: var(--card); border: 1px solid var(--yellow); border-radius: 4px; color: var(--yellow); font-family: 'IBM Plex Sans Thai'; font-size: 14px; font-weight: 600; text-decoration: none; transition: background 0.2s; margin-bottom: 28px; }
+    .sponsor-btn-download:hover { background: rgba(241,196,15,0.08); }
+    .sponsor-contact-card { background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: 22px 24px; margin-bottom: 8px; }
+    .sponsor-contact-label { font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--yellow); margin-bottom: 10px; }
+    .sponsor-contact-name { font-size: 15px; font-weight: 600; color: var(--white); margin-bottom: 10px; }
+    .sponsor-contact-info { display: flex; flex-wrap: wrap; gap: 18px; font-size: 13px; font-weight: 300; color: var(--muted); }
+    .sponsor-contact-info a { color: var(--yellow); text-decoration: none; }
+    .sponsor-contact-info a:hover { text-decoration: underline; }
+
+    .or-divider { position: relative; text-align: center; margin: 48px 0 36px; height: 1px; background: var(--border); }
+    .or-divider span { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); background: var(--dark); padding: 0 18px; font-size: 11px; font-weight: 300; letter-spacing: 0.2em; color: rgba(240,237,232,0.3); text-transform: uppercase; white-space: nowrap; }
+
     @media (max-width: 600px) {
       nav { padding: 14px 20px; }
       .nav-links { display: none; }
@@ -147,6 +172,53 @@
 </div>
 
 <div class="main">
+
+  <div class="section-label">สำหรับองค์กร / ผู้สนับสนุน</div>
+  <p class="sponsor-intro">
+    หากองค์กรหรือบริษัทของท่านต้องการสนับสนุนงาน "ปั่นเพื่อน้อง กรุงเทพ-เชียงใหม่ ครั้งที่ 9" ในระดับองค์กร
+    พร้อมรับสิทธิประโยชน์ด้านการประชาสัมพันธ์ ดูรายละเอียดสิทธิประโยชน์ตามระดับการสนับสนุนด้านล่าง
+  </p>
+
+  <div class="sponsor-table-wrap">
+    <table class="sponsor-table">
+      <thead>
+        <tr>
+          <th>สิทธิประโยชน์</th>
+          <th>5 แสน+</th>
+          <th>2 แสน</th>
+          <th>1 แสน</th>
+          <th>5 หมื่น</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>โลโก้ป้ายติดรถนำขบวน</td><td class="sponsor-check">✓</td><td class="sponsor-check">✓</td><td class="sponsor-check">✓</td><td class="sponsor-check">✓</td></tr>
+        <tr><td>โลโก้ป้ายติดรถตู้กรรมการ 2 คัน</td><td class="sponsor-check">✓</td><td class="sponsor-check">✓</td><td class="sponsor-check">✓</td><td class="sponsor-check">✓</td></tr>
+        <tr><td>โลโก้ป้ายติดรถขนสัมภาระ</td><td class="sponsor-check">✓</td><td class="sponsor-check">✓</td><td class="sponsor-check">✓</td><td class="sponsor-check">✓</td></tr>
+        <tr><td>โลโก้บน Backdrop เวทีพิธีเปิด<br><span style="font-size:11px;color:rgba(240,237,232,0.3)">(บจก. โตโยต้า บัสส์ สาขาวิภาวดี)</span></td><td class="sponsor-check">✓</td><td class="sponsor-check">✓</td><td class="sponsor-check">✓</td><td class="sponsor-cross">✕</td></tr>
+        <tr><td>โลโก้บนป้ายงานเลี้ยงตอนเย็นทุกจังหวัด</td><td class="sponsor-check">✓</td><td class="sponsor-check">✓</td><td class="sponsor-check">✓</td><td class="sponsor-cross">✕</td></tr>
+        <tr><td>รับของที่ระลึกจากงาน</td><td class="sponsor-check">✓</td><td class="sponsor-check">✓</td><td class="sponsor-check">✓</td><td class="sponsor-check">✓</td></tr>
+        <tr><td>โควต้าส่งนักปั่นเข้าร่วมกิจกรรม</td><td>2 คน</td><td>1 คน</td><td class="sponsor-cross">✕</td><td class="sponsor-cross">✕</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="sponsor-note">
+    * ขนาดของตราสัญลักษณ์องค์กร (Logo) จะแปรผันตามวงเงินที่สนับสนุน · กรณีสนับสนุนเป็นสิ่งของ คณะกรรมการขอสงวนสิทธิ์ในการพิจารณามูลค่าของสิ่งของที่สนับสนุน
+  </p>
+
+  <a href="sponsorship-benefits.pdf" target="_blank" class="sponsor-btn-download">📄 ดาวน์โหลดเอกสารสิทธิประโยชน์ฉบับเต็ม + แบบตอบรับ (PDF)</a>
+
+  <div class="sponsor-contact-card">
+    <div class="sponsor-contact-label">ติดต่อฝ่ายสนับสนุนองค์กร</div>
+    <div class="sponsor-contact-name">นางสาวโรจนวัน แก้วยนต์</div>
+    <div class="sponsor-contact-info">
+      <a href="mailto:bike.cmuaa@gmail.com">bike.cmuaa@gmail.com</a>
+      <span>088-267-9580</span>
+      <span>053-216-227</span>
+    </div>
+  </div>
+
+  <div class="or-divider"><span>หรือร่วมบริจาคแบบบุคคลทั่วไป</span></div>
 
   <div class="section-label">ช่องทางการโอนเงิน</div>
   <div class="payment-grid">
