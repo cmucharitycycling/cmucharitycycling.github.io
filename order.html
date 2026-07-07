@@ -8,7 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;600;700&family=IBM+Plex+Sans+Thai+Condensed:wght@700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --dark:    #1a1228;
+      --dark:    #0d0b14;
       --dark2:   #1a1528;
       --yellow:  #f1c40f;
       --yellow2: #e6b800;
@@ -24,7 +24,7 @@
     .nav-logo { font-family: 'IBM Plex Sans Thai Condensed', sans-serif; font-size: 17px; font-weight: 700; letter-spacing: 0.14em; color: var(--yellow); text-decoration: none; display: flex; align-items: center; gap: 10px; }
     .nav-logo img { width: 32px; height: 32px; object-fit: contain; }
     .nav-links { display: flex; gap: 0; list-style: none; }
-    .nav-links a { font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(240,237,232,0.38); text-decoration: none; padding: 8px 16px; border-left: 1px solid var(--border); transition: color 0.15s; }
+    .nav-links a { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(240,237,232,0.38); text-decoration: none; padding: 8px 16px; border-left: 1px solid var(--border); transition: color 0.15s; }
     .nav-links a:hover, .nav-links a.active { color: var(--white); }
     .nav-cta, .nav-links a.nav-cta { font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; background: var(--yellow); color: #0d0b14; padding: 8px 18px; border-radius: 2px; text-decoration: none; transition: background 0.15s; }
     .nav-cta:hover, .nav-links a.nav-cta:hover { background: var(--yellow2); color: #0d0b14; }
@@ -145,6 +145,15 @@
     .modal-box img { width: 100%; display: block; }
     .modal-close { position: absolute; top: -36px; right: 0; background: none; border: 1px solid rgba(255,255,255,0.2); color: var(--white); width: 28px; height: 28px; cursor: pointer; font-size: 14px; display: flex; align-items: center; justify-content: center; font-family: monospace; }
 
+    .processing-overlay { display: none; position: fixed; inset: 0; z-index: 9999; background: rgba(13,11,20,0.96); backdrop-filter: blur(4px); align-items: center; justify-content: center; padding: 24px; }
+    .processing-overlay.open { display: flex; }
+    .processing-box { text-align: center; max-width: 340px; }
+    .processing-spinner { width: 48px; height: 48px; margin: 0 auto 24px; border: 3px solid rgba(241,196,15,0.15); border-top-color: var(--yellow); border-radius: 50%; animation: spin 0.8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .processing-title { font-family: 'IBM Plex Sans Thai Condensed', sans-serif; font-size: 22px; font-weight: 700; color: var(--yellow); letter-spacing: 0.04em; margin-bottom: 10px; }
+    .processing-sub { font-size: 13px; font-weight: 300; color: rgba(240,237,232,0.55); line-height: 1.8; }
+    .processing-warn { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #ff6b6b; margin-top: 18px; border: 1px solid rgba(255,107,107,0.25); background: rgba(255,107,107,0.06); padding: 10px 14px; }
+
     @media (max-width: 768px) {
       nav { padding: 14px 20px; }
       .nav-links { display: none; }
@@ -253,6 +262,15 @@
     <div id="file-name" style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--yellow);margin-top:8px;min-height:18px;letter-spacing:0.08em;"></div>
 
     <button onclick="sendData()" id="btn" class="btn-submit">ยืนยันการสั่งซื้อ</button>
+  </div>
+</div>
+
+<div class="processing-overlay" id="processing-overlay">
+  <div class="processing-box">
+    <div class="processing-spinner"></div>
+    <div class="processing-title">กำลังบันทึกข้อมูล...</div>
+    <div class="processing-sub">ระบบกำลังอัปโหลดสลิปและบันทึกคำสั่งซื้อของคุณ<br>อาจใช้เวลาสักครู่ขึ้นอยู่กับความเร็วอินเทอร์เน็ต</div>
+    <div class="processing-warn">⚠ กรุณาอย่าปิดหน้านี้ หรือกดย้อนกลับ<br>จนกว่าจะเห็นข้อความ "สั่งซื้อสำเร็จ"</div>
   </div>
 </div>
 
@@ -381,12 +399,18 @@
   function closeMenu(){ document.getElementById('nav-mobile').classList.remove('open'); document.getElementById('hamburger').classList.remove('open'); document.body.style.overflow=''; }
   function showFileName(input){ document.getElementById('file-name').innerText=input.files[0]?'✓ '+input.files[0].name:''; }
 
+  var isSubmitting = false;
+  function blockUnload(e){ e.preventDefault(); e.returnValue = 'ข้อมูลกำลังบันทึก อย่าเพิ่งปิดหน้านี้'; return e.returnValue; }
+
   async function sendData(){
     var btn=document.getElementById('btn'), total=calc();
     if(total===0)return alert("กรุณาเลือกสินค้าอย่างน้อย 1 ชิ้น");
     if(!document.getElementById('name').value||!document.getElementById('tel').value)return alert("กรุณากรอกชื่อและเบอร์โทรศัพท์");
     if(document.getElementById('fileInput').files.length===0)return alert("กรุณาแนบสลิปโอนเงิน");
     btn.disabled=true; btn.innerText="กำลังบันทึกข้อมูล...";
+    isSubmitting = true;
+    window.addEventListener('beforeunload', blockUnload);
+    document.getElementById('processing-overlay').classList.add('open');
     var details=[];
     PRODUCTS.forEach(function(p,pIdx){ p.variants.forEach(function(v,vIdx){ v.sizes.forEach(function(s){ var q=getQty(pIdx,vIdx,s); if(q>0)details.push(p.nameDisplay+'('+v.gender+')-'+s+'('+q+')'); }); }); });
     try{
@@ -394,8 +418,16 @@
       var base64=await new Promise(function(r){ var rd=new FileReader(); rd.onload=function(){r(rd.result.split(',')[1]);}; rd.readAsDataURL(file); });
       var payload={ name:document.getElementById('name').value, tel:"'"+document.getElementById('tel').value, address:document.getElementById('address').value, email:document.getElementById('email').value, total:total, details:details.join(", "), fileData:base64, fileName:file.name, mimeType:file.type };
       await fetch(WEB_APP_URL,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain"},body:JSON.stringify(payload)});
+      isSubmitting = false;
+      window.removeEventListener('beforeunload', blockUnload);
       document.body.innerHTML='<div style="background:#0d0b14;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 20px;font-family:\'IBM Plex Sans Thai\',sans-serif;"><div style="font-family:\'IBM Plex Sans Thai Condensed\',sans-serif;font-size:96px;font-weight:700;color:#f1c40f;line-height:1;margin-bottom:20px;">✓</div><h2 style="font-family:\'IBM Plex Sans Thai Condensed\',sans-serif;font-size:42px;letter-spacing:0.06em;color:#f1c40f;margin-bottom:10px;font-weight:700;">สั่งซื้อสำเร็จ</h2><p style="font-size:15px;font-weight:300;color:rgba(240,237,232,0.5);margin-bottom:28px;">เราได้รับข้อมูลของคุณเรียบร้อยแล้ว ทีมงานจะติดต่อกลับเร็วๆ นี้</p><div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;"><a href="status.html" style="background:#f1c40f;color:#0d0b14;padding:12px 28px;border-radius:2px;font-family:\'IBM Plex Sans Thai\';font-size:14px;font-weight:600;text-decoration:none;">เช็คสถานะการสั่งซื้อ</a><a href="index.html" style="border:1px solid rgba(241,196,15,0.4);color:#f1c40f;padding:12px 28px;border-radius:2px;font-family:\'IBM Plex Sans Thai\';font-size:14px;text-decoration:none;">← กลับหน้าหลัก</a></div></div>';
-    }catch(e){ alert("เกิดข้อผิดพลาด: "+e.message); btn.disabled=false; btn.innerText="ยืนยันการสั่งซื้อ"; }
+    }catch(e){
+      isSubmitting = false;
+      window.removeEventListener('beforeunload', blockUnload);
+      document.getElementById('processing-overlay').classList.remove('open');
+      alert("เกิดข้อผิดพลาด: "+e.message);
+      btn.disabled=false; btn.innerText="ยืนยันการสั่งซื้อ";
+    }
   }
 
   init();
