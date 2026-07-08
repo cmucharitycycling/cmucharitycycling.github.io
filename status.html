@@ -8,7 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;600;700&family=IBM+Plex+Sans+Thai+Condensed:wght@700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --dark:   #1e1535;
+      --dark:   #0d0b14;
       --yellow: #f1c40f;
       --yellow2:#e6b800;
       --white:  #f0ede8;
@@ -19,27 +19,26 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'IBM Plex Sans Thai', sans-serif; background: var(--dark); color: var(--white); min-height: 100vh; padding-top: 80px; }
 
-    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 18px 40px; background: #0d0b14; border-bottom: 1px solid var(--border); }
-    .nav-logo { font-family: 'IBM Plex Sans Thai Condensed', sans-serif; font-size: 22px; letter-spacing: 0.12em; color: var(--yellow); text-decoration: none; font-weight: 700; }
-    .nav-links { display: flex; gap: 28px; list-style: none; }
-    .nav-links a { color: var(--muted); font-size: 15px; font-weight: 600; text-decoration: none; letter-spacing: 0.12em; text-transform: uppercase; transition: color 0.2s; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 16px 40px; background: var(--dark); border-bottom: 1px solid var(--border); }
+    .nav-logo { font-family: 'IBM Plex Sans Thai Condensed', sans-serif; font-size: 17px; font-weight: 700; letter-spacing: 0.14em; color: var(--yellow); text-decoration: none; display: flex; align-items: center; gap: 10px; }
+    .nav-logo img { width: 32px; height: 32px; object-fit: contain; }
+    .nav-links { display: flex; gap: 0; list-style: none; }
+    .nav-links a { font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(240,237,232,0.38); text-decoration: none; padding: 8px 16px; border-left: 1px solid var(--border); transition: color 0.15s; }
     .nav-links a:hover, .nav-links a.active { color: var(--white); }
-    .nav-cta { background: var(--yellow); color: #0d0b14; padding: 8px 20px; border-radius: 4px; font-size: 14px; font-weight: 600; text-decoration: none; transition: background 0.2s; }
-    .nav-cta:hover { background: var(--yellow2); }
+    .nav-cta, .nav-links a.nav-cta { font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; background: var(--yellow); color: #0d0b14; padding: 8px 18px; border-radius: 2px; text-decoration: none; transition: background 0.15s; }
+    .nav-cta:hover, .nav-links a.nav-cta:hover { background: var(--yellow2); color: #0d0b14; }
 
-    /* HAMBURGER */
     .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
-    .nav-hamburger span { display: block; width: 24px; height: 2px; background: var(--white); border-radius: 2px; transition: all 0.3s ease; }
+    .nav-hamburger span { display: block; width: 24px; height: 2px; background: var(--white); border-radius: 2px; transition: all 0.3s; }
     .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
     .nav-hamburger.open span:nth-child(2) { opacity: 0; }
     .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
-    .nav-mobile { display: none; position: fixed; top: 61px; left: 0; right: 0; bottom: 0; background: #0d0b14; z-index: 99; flex-direction: column; padding: 32px 24px; border-top: 1px solid var(--border); overflow-y: auto; }
+    .nav-mobile { display: none; position: fixed; top: 61px; left: 0; right: 0; bottom: 0; background: var(--dark); z-index: 99; flex-direction: column; padding: 32px 24px; border-top: 1px solid var(--border); overflow-y: auto; }
     .nav-mobile.open { display: flex; }
     .nav-mobile ul { list-style: none; display: flex; flex-direction: column; gap: 4px; margin-bottom: 24px; }
-    .nav-mobile ul li a { display: block; padding: 14px 0; font-size: 20px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.06); transition: color 0.2s; }
+    .nav-mobile ul li a { display: block; padding: 14px 0; font-family: 'IBM Plex Mono', monospace; font-size: 15px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(240,237,232,0.5); text-decoration: none; border-bottom: 1px solid var(--border); transition: color 0.2s; }
     .nav-mobile ul li a:hover { color: var(--white); }
-    .nav-mobile .nav-cta-mobile { display: block; text-align: center; background: var(--yellow); color: #0d0b14; padding: 14px; border-radius: 4px; font-size: 16px; font-weight: 700; text-decoration: none; letter-spacing: 0.06em; }
+    .nav-mobile .nav-cta-mobile { display: block; text-align: center; background: var(--yellow); color: #0d0b14; padding: 14px; border-radius: 2px; font-family: 'IBM Plex Mono', monospace; font-size: 15px; font-weight: 700; letter-spacing: 0.12em; text-decoration: none; }
 
     .page-header { max-width: 700px; margin: 0 auto; padding: 50px 40px 40px; }
     .page-eyebrow { font-size: 11px; font-weight: 300; letter-spacing: 0.25em; color: var(--yellow); text-transform: uppercase; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
@@ -94,7 +93,7 @@
     @keyframes spin { to { transform: rotate(360deg); } }
 
     @media (max-width: 768px) {
-      nav { padding: 16px 20px; }
+      nav { padding: 14px 20px; }
       .nav-links { display: none; }
       .nav-cta { display: none; }
       .nav-hamburger { display: flex; }
@@ -105,14 +104,18 @@
 <body>
 
 <nav>
-  <a href="index.html" class="nav-logo">CMU CHARITY CYCLING</a>
+  <a href="index.html" class="nav-logo">
+    <img src="logo.png" alt="logo">
+    CMU CHARITY CYCLING
+  </a>
   <ul class="nav-links">
-    <li><a href="order.html">ของที่ระลึก [↗]</a></li>
-    <li><a href="status.html" class="active">เช็คสถานะ [↗]</a></li>
-    <li><a href="riders.html">ทะเบียนนักปั่น [↗]</a></li>
-    <li><a href="donate.html">ร่วมบริจาค [↗]</a></li>
+    <li><a href="route.html">เส้นทาง</a></li>
+    <li><a href="order.html">ของที่ระลึก</a></li>
+    <li><a href="status.html" class="active">เช็คสถานะ</a></li>
+    <li><a href="riders.html">ทะเบียนนักปั่น</a></li>
+    <li><a href="donate.html">บริจาค</a></li>
+    <li><a href="https://forms.gle/ir2cG4w7jTnj2szc9" target="_blank" class="nav-cta">สมัคร →</a></li>
   </ul>
-  <a href="order.html" class="nav-cta">สั่งของที่ระลึก</a>
   <button class="nav-hamburger" id="hamburger" onclick="toggleMenu()" aria-label="เมนู">
     <span></span><span></span><span></span>
   </button>
@@ -120,12 +123,13 @@
 
 <div class="nav-mobile" id="nav-mobile">
   <ul>
-    <li><a href="order.html" onclick="closeMenu()">ของที่ระลึก [↗]</a></li>
-    <li><a href="status.html" onclick="closeMenu()">เช็คสถานะ [↗]</a></li>
-    <li><a href="riders.html" onclick="closeMenu()">ทะเบียนนักปั่น [↗]</a></li>
-    <li><a href="donate.html" onclick="closeMenu()">ร่วมบริจาค [↗]</a></li>
+    <li><a href="route.html" onclick="closeMenu()">เส้นทาง</a></li>
+    <li><a href="order.html" onclick="closeMenu()">ของที่ระลึก</a></li>
+    <li><a href="status.html" onclick="closeMenu()">เช็คสถานะ</a></li>
+    <li><a href="riders.html" onclick="closeMenu()">ทะเบียนนักปั่น</a></li>
+    <li><a href="donate.html" onclick="closeMenu()">บริจาค</a></li>
   </ul>
-  <a href="order.html" class="nav-cta-mobile">สั่งของที่ระลึก</a>
+  <a href="https://forms.gle/ir2cG4w7jTnj2szc9" target="_blank" class="nav-cta-mobile">สมัครเข้าร่วม →</a>
 </div>
 
 <div class="page-header">
@@ -146,9 +150,9 @@
 
 <div class="result-wrap" id="result-area"></div>
 
-<footer style="border-top:1px solid var(--border);padding:40px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;max-width:700px;margin:0 auto;">
-  <a href="index.html" style="font-family:'IBM Plex Sans Thai Condensed',sans-serif;font-weight:700;font-size:18px;letter-spacing:0.12em;color:var(--yellow);text-decoration:none;">CMU CHARITY CYCLING</a>
-  <p style="font-size: 14px;font-weight:300;color:rgba(240,237,232,0.25);letter-spacing:0.06em;">© 2569 สมาคมนักศึกษาเก่า มหาวิทยาลัยเชียงใหม่</p>
+<footer style="border-top:1px solid var(--border);padding:36px 40px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;max-width:700px;margin:0 auto;">
+  <a href="index.html" style="font-family:'IBM Plex Sans Thai Condensed',sans-serif;font-weight:700;font-size:17px;letter-spacing:0.14em;color:var(--yellow);text-decoration:none;">CMU CHARITY CYCLING</a>
+  <p style="font-family:'IBM Plex Mono',monospace;font-size: 10px;letter-spacing:0.1em;color:rgba(240,237,232,0.16);">© 2569 สมาคมนักศึกษาเก่า มหาวิทยาลัยเชียงใหม่</p>
 </footer>
 
 <script>
