@@ -451,6 +451,32 @@
       color: rgba(240,237,232,0.28); margin-top: 3px;
     }
 
+    .qa-list { margin-top: 32px; display: flex; flex-direction: column; gap: 26px; }
+    .qa-item { border-left: 2px solid rgba(241,196,15,0.18); padding-left: 18px; }
+    .qa-q {
+      font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--yellow); opacity: 0.75;
+      margin-bottom: 8px; line-height: 1.6;
+    }
+    .qa-a {
+      font-size: 15px; font-weight: 300; line-height: 1.85;
+      color: rgba(240,237,232,0.8);
+    }
+
+    .testi-carousel { overflow: hidden; position: relative; }
+    .testi-track { display: flex; transition: transform 0.6s cubic-bezier(.4,0,.2,1); }
+    .testi-slide { flex: 0 0 100%; min-width: 100%; }
+    .testi-dots { display: flex; align-items: center; gap: 8px; margin-top: 30px; }
+    .testi-dot { width: 22px; height: 3px; background: rgba(255,255,255,0.14); border: none; cursor: pointer; padding: 0; border-radius: 2px; transition: background 0.2s; }
+    .testi-dot.active { background: var(--yellow); }
+    .testi-playpause {
+      width: 26px; height: 26px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.16);
+      background: none; color: rgba(240,237,232,0.6); cursor: pointer; margin-left: 6px;
+      display: flex; align-items: center; justify-content: center; font-size: 10px;
+      transition: border-color 0.2s, color 0.2s; flex-shrink: 0;
+    }
+    .testi-playpause:hover { border-color: rgba(241,196,15,0.4); color: var(--yellow); }
+
     /* ── CTA STRIP ── */
     .cta-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
     .cta-card {
@@ -775,17 +801,95 @@
 <!-- TESTIMONIAL -->
 <section class="section-wrap fade-in">
   <div class="eyebrow">FIELD REPORT</div>
-  <div class="quote">
-    ไม่คิดว่าตัวเองจะทำได้ แต่พอถึงเชียงใหม่วันสุดท้าย มันเป็นความรู้สึกที่อธิบายไม่ได้ — และอยากทำซ้ำ
-  </div>
-  <div class="byline">
-    <div class="avatar">งจ</div>
-    <div>
-      <div class="byline-name">งามจิตต์ สุขุมาลวัฒน์</div>
-      <div class="byline-role">คณะวิทยาศาสตร์ · นักปั่นรุ่นที่ 8 · 2568</div>
+  <div class="testi-carousel" id="testi-carousel">
+    <div class="testi-track" id="testi-track">
+      <div class="testi-slide">
+        <div class="quote">
+          ไม่คิดว่าตัวเองจะทำได้ แต่พอถึงเชียงใหม่วันสุดท้าย มันเป็นความรู้สึกที่อธิบายไม่ได้ — และอยากทำซ้ำ
+        </div>
+        <div class="byline">
+          <div class="avatar">งจ</div>
+          <div>
+            <div class="byline-name">งามจิตต์ สุขุมาลวัฒน์</div>
+            <div class="byline-role">คณะวิทยาศาสตร์ · นักปั่นรุ่นที่ 8 · 2568</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-slide">
+        <div class="byline" style="margin-bottom: 24px;">
+          <div class="avatar">วย</div>
+          <div>
+            <div class="byline-name">วรณัน เย็นฤดี</div>
+            <div class="byline-role">คณะวิทยาศาสตร์ · นักปั่นรุ่นที่ 8</div>
+          </div>
+        </div>
+        <div class="qa-list">
+          <div class="qa-item">
+            <div class="qa-q">ความรู้สึกตอนถึงเชียงใหม่วันสุดท้ายเป็นอย่างไร</div>
+            <div class="qa-a">"ตื่นเต้น และดีใจที่รู้ว่าจะถึงบ้านที่เคยอยู่ เคยเรียน เคยหัวเราะกับเพื่อนๆ และเมื่อตอนปั่นเข้ารั้วมหาวิทยาลัย ตื้นตัน มีความสุข น้ำตาซึมออกมาเองด้วยความดีใจ ภูมิใจ"</div>
+          </div>
+          <div class="qa-item">
+            <div class="qa-q">ทำไมถึงอยากชวนคนอื่นมาร่วมปั่นด้วย</div>
+            <div class="qa-a">"อยากให้ได้ประสบการณ์ดีๆ กับการปั่นกลุ่ม และได้ทำสิ่งที่ดีเป็นโอกาสกับเด็กๆ และได้ท้าทายกับการอดทนตลอด 6 วัน เพื่อเป้าหมายที่ดีและชัดเจน"</div>
+          </div>
+          <div class="qa-item">
+            <div class="qa-q">ประสบการณ์ที่จำได้ที่สุดจากการปั่นครั้งนี้คือ</div>
+            <div class="qa-a">"การได้ใช้สองขาปั่นระยะทางไกล การต้อนรับจากพี่น้อง มช. บนเส้นทางที่ผ่าน และการได้ใช้ชีวิตร่วมเส้นทาง ดูแลกันและห่วงใยกันของกลุ่มปั่น"</div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
+  <div class="testi-dots" id="testi-dots">
+    <button class="testi-playpause" id="testi-playpause" aria-label="หยุด/เล่นอัตโนมัติ">❚❚</button>
+  </div>
 </section>
+
+<script>
+  (function(){
+    var carousel = document.getElementById('testi-carousel');
+    var track = document.getElementById('testi-track');
+    var dotsWrap = document.getElementById('testi-dots');
+    var playBtn = document.getElementById('testi-playpause');
+    var slides = track.children;
+    var count = slides.length;
+    var current = 0, timer, paused = false;
+
+    for (var i = 0; i < count; i++) {
+      var dot = document.createElement('button');
+      dot.className = 'testi-dot' + (i === 0 ? ' active' : '');
+      dot.setAttribute('aria-label', 'ไปที่ field report ' + (i + 1));
+      dot.addEventListener('click', function(idx){
+        return function(){ goTo(idx); resetTimer(); };
+      }(i));
+      dotsWrap.insertBefore(dot, playBtn);
+    }
+
+    function goTo(idx){
+      current = idx;
+      track.style.transform = 'translateX(-' + (idx * 100) + '%)';
+      var dots = dotsWrap.querySelectorAll('.testi-dot');
+      for (var j = 0; j < dots.length; j++) dots[j].classList.toggle('active', j === idx);
+    }
+
+    function next(){ goTo((current + 1) % count); }
+    function startTimer(){ clearInterval(timer); timer = setInterval(function(){ if(!paused) next(); }, 7000); }
+    function resetTimer(){ startTimer(); }
+
+    // หยุดอัตโนมัติเมื่อเอาเมาส์ไปวางที่การ์ด (desktop)
+    carousel.addEventListener('mouseenter', function(){ paused = true; });
+    carousel.addEventListener('mouseleave', function(){ paused = false; });
+
+    // ปุ่มหยุด/เล่นเอง (ใช้ได้ทั้งมือถือและคอม)
+    playBtn.addEventListener('click', function(){
+      paused = !paused;
+      playBtn.textContent = paused ? '▶' : '❚❚';
+      playBtn.setAttribute('aria-label', paused ? 'เล่นอัตโนมัติ' : 'หยุดอัตโนมัติ');
+    });
+
+    startTimer();
+  })();
+</script>
 
 <!-- CTA -->
 <section class="section-wrap fade-in">
