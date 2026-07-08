@@ -8,7 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;600;700&family=IBM+Plex+Sans+Thai+Condensed:wght@700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --dark: #1a1228;
+      --dark: #0d0b14;
       --purple:  #1a1528;
       --yellow:  #f1c40f;
       --yellow2: #e6b800;
@@ -24,9 +24,9 @@
     .nav-logo { font-family: 'IBM Plex Sans Thai Condensed', sans-serif; font-size: 17px; font-weight: 700; letter-spacing: 0.14em; color: var(--yellow); text-decoration: none; display: flex; align-items: center; gap: 10px; }
     .nav-logo img { width: 32px; height: 32px; object-fit: contain; }
     .nav-links { display: flex; gap: 0; list-style: none; }
-    .nav-links a { font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(240,237,232,0.38); text-decoration: none; padding: 8px 16px; border-left: 1px solid var(--border); transition: color 0.15s; }
+    .nav-links a { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(240,237,232,0.38); text-decoration: none; padding: 8px 16px; border-left: 1px solid var(--border); transition: color 0.15s; }
     .nav-links a:hover, .nav-links a.active { color: var(--white); }
-    .nav-cta, .nav-links a.nav-cta { font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; background: var(--yellow); color: #0d0b14; padding: 8px 18px; border-radius: 2px; text-decoration: none; transition: background 0.15s; }
+    .nav-cta, .nav-links a.nav-cta { font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; background: var(--yellow); color: #0d0b14; padding: 8px 18px; border-radius: 2px; text-decoration: none; transition: background 0.15s; }
     .nav-cta:hover, .nav-links a.nav-cta:hover { background: var(--yellow2); color: #0d0b14; }
     .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
     .nav-hamburger span { display: block; width: 24px; height: 2px; background: var(--white); border-radius: 2px; transition: all 0.3s; }
@@ -36,13 +36,13 @@
     .nav-mobile { display: none; position: fixed; top: 61px; left: 0; right: 0; bottom: 0; background: var(--dark); z-index: 99; flex-direction: column; padding: 32px 24px; border-top: 1px solid var(--border); overflow-y: auto; }
     .nav-mobile.open { display: flex; }
     .nav-mobile ul { list-style: none; display: flex; flex-direction: column; gap: 4px; margin-bottom: 24px; }
-    .nav-mobile ul li a { display: block; padding: 14px 0; font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(240,237,232,0.5); text-decoration: none; border-bottom: 1px solid var(--border); transition: color 0.2s; }
+    .nav-mobile ul li a { display: block; padding: 14px 0; font-family: 'IBM Plex Mono', monospace; font-size: 15px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(240,237,232,0.5); text-decoration: none; border-bottom: 1px solid var(--border); transition: color 0.2s; }
     .nav-mobile ul li a:hover { color: var(--white); }
-    .nav-mobile .nav-cta-mobile { display: block; text-align: center; background: var(--yellow); color: #0d0b14; padding: 14px; border-radius: 2px; font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 700; letter-spacing: 0.12em; text-decoration: none; }
+    .nav-mobile .nav-cta-mobile { display: block; text-align: center; background: var(--yellow); color: #0d0b14; padding: 14px; border-radius: 2px; font-family: 'IBM Plex Mono', monospace; font-size: 15px; font-weight: 700; letter-spacing: 0.12em; text-decoration: none; }
 
     .page-header { max-width: 800px; margin: 0 auto; padding: 50px 40px 30px; border-bottom: 1px solid var(--border); }
     .page-eyebrow { font-size: 11px; font-weight: 300; letter-spacing: 0.25em; color: var(--yellow); text-transform: uppercase; margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
-    .page-eyebrow::before { content: '❤'; font-size: 12px; }
+    .page-eyebrow::before { content: '❤'; font-size: 14px; }
     .page-title { font-family: 'IBM Plex Sans Thai Condensed', sans-serif; font-size: clamp(36px, 6vw, 64px); letter-spacing: 0.04em; color: var(--white); font-weight: 700; margin-bottom: 8px; }
     .page-sub { font-size: 14px; font-weight: 300; color: var(--muted); line-height: 1.8; }
 
@@ -54,12 +54,12 @@
     .payment-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
     @media (max-width: 600px) { .payment-grid { grid-template-columns: 1fr; } }
     .payment-card { background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: 24px; text-align: center; }
-    .payment-card-label { font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--yellow); margin-bottom: 16px; display: flex; align-items: center; justify-content: center; gap: 6px; }
+    .payment-card-label { font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--yellow); margin-bottom: 16px; display: flex; align-items: center; justify-content: center; gap: 6px; }
     .payment-card-label::before { content: '◈'; }
     .payment-qr { width: 180px; height: 180px; object-fit: contain; border: 1px solid var(--border); border-radius: 4px; margin: 0 auto 16px; display: block; background: white; padding: 8px; }
-    .payment-bank { font-size: 13px; font-weight: 600; color: var(--white); margin-bottom: 4px; }
+    .payment-bank { font-size: 15px; font-weight: 600; color: var(--white); margin-bottom: 4px; }
     .payment-account { font-family: 'IBM Plex Sans Thai Condensed', sans-serif; font-size: 20px; font-weight: 700; color: var(--yellow); letter-spacing: 0.08em; margin-bottom: 4px; }
-    .payment-name { font-size: 12px; font-weight: 300; color: var(--muted); }
+    .payment-name { font-size: 14px; font-weight: 300; color: var(--muted); }
     .payment-warn { font-size: 11px; color: #ff6b6b; font-weight: 300; margin-top: 12px; }
 
     .amount-wrap { display: flex; align-items: center; background: var(--card); border: 1px solid var(--border); border-radius: 4px; overflow: hidden; margin-bottom: 16px; }
@@ -70,7 +70,7 @@
     .form-group { margin-bottom: 16px; }
     .form-label { font-size: 11px; font-weight: 300; letter-spacing: 0.15em; color: var(--muted); text-transform: uppercase; display: block; margin-bottom: 8px; }
     .form-label .required { color: #ff6b6b; margin-left: 4px; }
-    .form-label .optional { color: rgba(240,237,232,0.25); font-size: 10px; margin-left: 4px; }
+    .form-label .optional { color: rgba(240,237,232,0.25); font-size: 11px; margin-left: 4px; }
     .form-input { width: 100%; padding: 13px 16px; background: var(--card); border: 1px solid var(--border); border-radius: 4px; color: var(--white); font-family: 'IBM Plex Sans Thai'; font-size: 15px; outline: none; transition: border-color 0.2s; }
     .form-input:focus { border-color: var(--yellow); }
     .form-input::placeholder { color: rgba(255,255,255,0.2); }
@@ -87,13 +87,13 @@
     .receipt-only.show { display: block; }
     .receipt-section { background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: 24px; margin-bottom: 16px; display: none; }
     .receipt-section.show { display: block; }
-    .receipt-section-title { font-size: 12px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--yellow); margin-bottom: 20px; display: flex; align-items: center; gap: 6px; }
+    .receipt-section-title { font-size: 14px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--yellow); margin-bottom: 20px; display: flex; align-items: center; gap: 6px; }
     .receipt-section-title::before { content: '§'; }
 
     .file-input-wrap { position: relative; background: var(--card); border: 1px dashed var(--border); border-radius: 4px; padding: 20px; text-align: center; cursor: pointer; transition: border-color 0.2s; }
     .file-input-wrap:hover { border-color: var(--yellow); }
     .file-input-wrap input { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; }
-    .file-input-text { font-size: 13px; font-weight: 300; color: var(--muted); }
+    .file-input-text { font-size: 15px; font-weight: 300; color: var(--muted); }
     .file-input-text span { color: var(--yellow); }
 
     .btn-submit { width: 100%; padding: 16px; background: var(--yellow); color: var(--dark); border: none; border-radius: 4px; font-family: 'IBM Plex Sans Thai Condensed', sans-serif; font-size: 22px; letter-spacing: 0.1em; cursor: pointer; transition: background 0.2s, transform 0.15s; margin-top: 8px; font-weight: 700; }
@@ -104,9 +104,9 @@
     .sponsor-intro { font-size: 14px; font-weight: 300; color: var(--muted); line-height: 1.85; margin-bottom: 24px; }
     .sponsor-table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 6px; margin-bottom: 20px; }
     .sponsor-table { width: 100%; border-collapse: collapse; min-width: 580px; }
-    .sponsor-table th { background: rgba(241,196,15,0.06); color: var(--yellow); font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 13px 14px; text-align: center; border-bottom: 1px solid var(--border); white-space: nowrap; }
+    .sponsor-table th { background: rgba(241,196,15,0.06); color: var(--yellow); font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 13px 14px; text-align: center; border-bottom: 1px solid var(--border); white-space: nowrap; }
     .sponsor-table th:first-child { text-align: left; }
-    .sponsor-table td { padding: 13px 14px; font-size: 13px; font-weight: 300; color: var(--white); border-bottom: 1px solid var(--border); text-align: center; white-space: nowrap; }
+    .sponsor-table td { padding: 13px 14px; font-size: 15px; font-weight: 300; color: var(--white); border-bottom: 1px solid var(--border); text-align: center; white-space: nowrap; }
     .sponsor-table td:first-child { text-align: left; font-weight: 400; color: rgba(240,237,232,0.85); white-space: normal; min-width: 220px; }
     .sponsor-table tr:last-child td { border-bottom: none; }
     .sponsor-table tr:hover td { background: rgba(255,255,255,0.02); }
@@ -116,9 +116,9 @@
     .sponsor-btn-download { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 15px; background: var(--card); border: 1px solid var(--yellow); border-radius: 4px; color: var(--yellow); font-family: 'IBM Plex Sans Thai'; font-size: 14px; font-weight: 600; text-decoration: none; transition: background 0.2s; margin-bottom: 28px; }
     .sponsor-btn-download:hover { background: rgba(241,196,15,0.08); }
     .sponsor-contact-card { background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: 22px 24px; margin-bottom: 8px; }
-    .sponsor-contact-label { font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--yellow); margin-bottom: 10px; }
+    .sponsor-contact-label { font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--yellow); margin-bottom: 10px; }
     .sponsor-contact-name { font-size: 15px; font-weight: 600; color: var(--white); margin-bottom: 10px; }
-    .sponsor-contact-info { display: flex; flex-wrap: wrap; gap: 18px; font-size: 13px; font-weight: 300; color: var(--muted); }
+    .sponsor-contact-info { display: flex; flex-wrap: wrap; gap: 18px; font-size: 15px; font-weight: 300; color: var(--muted); }
     .sponsor-contact-info a { color: var(--yellow); text-decoration: none; }
     .sponsor-contact-info a:hover { text-decoration: underline; }
 
@@ -209,7 +209,7 @@
   <a href="sponsorship-benefits.pdf" target="_blank" class="sponsor-btn-download">📄 ดาวน์โหลดเอกสารสิทธิประโยชน์ฉบับเต็ม + แบบตอบรับ (PDF)</a>
 
   <div class="sponsor-contact-card">
-    <div class="sponsor-contact-label">ติดต่อฝ่ายสนับสนุน</div>
+    <div class="sponsor-contact-label">ติดต่อฝ่ายสนับสนุนองค์กร</div>
     <div class="sponsor-contact-name">นางสาวโรจนวัน แก้วยนต์</div>
     <div class="sponsor-contact-info">
       <a href="mailto:bike.cmuaa@gmail.com">bike.cmuaa@gmail.com</a>
@@ -233,7 +233,7 @@
     <div class="payment-card" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;">
       <div class="payment-card-label">e-Donation</div>
       <div style="font-size:48px;opacity:0.2;font-family:'IBM Plex Sans Thai Condensed',sans-serif;font-weight:700;">近</div>
-      <div style="font-size:13px;font-weight:300;color:var(--muted);text-align:center;line-height:1.8;">ระบบ e-Donation<br>จะเปิดให้บริการเร็วๆ นี้</div>
+      <div style="font-size: 15px;font-weight:300;color:var(--muted);text-align:center;line-height:1.8;">ระบบ e-Donation<br>จะเปิดให้บริการเร็วๆ นี้</div>
     </div>
   </div>
 
@@ -302,7 +302,7 @@
     <input type="file" id="fileInput" accept="image/*" onchange="showFileName(this)">
     <div class="file-input-text">📎 แนบสลิปโอนเงิน &nbsp;<span>คลิกหรือลากไฟล์มาวาง</span></div>
   </div>
-  <div id="file-name" style="font-size:12px;color:var(--yellow);margin-top:8px;font-weight:300;min-height:18px;"></div>
+  <div id="file-name" style="font-size: 14px;color:var(--yellow);margin-top:8px;font-weight:300;min-height:18px;"></div>
 
   <button onclick="sendData()" id="btn" class="btn-submit" style="margin-top:24px;">ยืนยันการบริจาค</button>
 
@@ -310,7 +310,7 @@
 
 <footer style="border-top:1px solid var(--border);padding:36px 40px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;max-width:800px;margin:40px auto 0;">
   <a href="index.html" style="font-family:'IBM Plex Sans Thai Condensed',sans-serif;font-weight:700;font-size:17px;letter-spacing:0.14em;color:var(--yellow);text-decoration:none;">CMU CHARITY CYCLING</a>
-  <p style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.1em;color:rgba(240,237,232,0.16);">© 2569 สมาคมนักศึกษาเก่า มหาวิทยาลัยเชียงใหม่</p>
+  <p style="font-family:'IBM Plex Mono',monospace;font-size: 10px;letter-spacing:0.1em;color:rgba(240,237,232,0.16);">© 2569 สมาคมนักศึกษาเก่า มหาวิทยาลัยเชียงใหม่</p>
 </footer>
 
 <script>
