@@ -2,13 +2,6 @@
 <html lang="th">
 <head>
   <meta charset="UTF-8">
-  <script>
-    (function(){
-      var saved = localStorage.getItem('cmu-theme');
-      var theme = saved || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
-      document.documentElement.setAttribute('data-theme', theme);
-    })();
-  </script>
   <link rel="icon" type="image/png" href="logo.png?v=1">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CMU Charity Cycling — ปั่นเพื่อน้อง</title>
@@ -28,22 +21,7 @@
       --accent-rgb: 241,196,15;
       --surface-rgb: 13,11,20;
       --danger: #ff6b6b;
-      color-scheme: dark;
     }
-    [data-theme="light"] {
-      --bg: #f7f3ea;
-      --white: #1a1228;
-      --yellow: #b8860b;
-      --yellow2: #9c6f08;
-      --text-rgb: 26,18,40;
-      --border-rgb: 26,18,40;
-      --accent-rgb: 156,111,8;
-      --surface-rgb: 255,255,255;
-      --danger: #c0392b;
-      color-scheme: light;
-    }
-    html { transition: background 0.25s ease; }
-    body { transition: background 0.25s ease, color 0.25s ease; }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body { font-family: 'IBM Plex Sans Thai', sans-serif; background: var(--bg); color: var(--white); overflow-x: hidden; }
@@ -51,7 +29,7 @@
     /* ── NAV ── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      display: flex; align-items: center;
+      display: flex; align-items: center; justify-content: space-between;
       padding: 16px 40px;
       background: var(--bg);
       border-bottom: 1px solid var(--border);
@@ -63,7 +41,7 @@
       display: flex; align-items: center; gap: 10px;
     }
     .nav-logo img { width: 32px; height: 32px; object-fit: contain; }
-    .nav-links { display: flex; gap: 0; list-style: none; margin-left: auto; }
+    .nav-links { display: flex; gap: 0; list-style: none; }
     .nav-links a {
       font-family: 'IBM Plex Mono', monospace;
       font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
@@ -83,16 +61,6 @@
     }
     .nav-cta:hover,
     .nav-links a.nav-cta:hover { background: var(--yellow2); color: #0d0b14; }
-
-    .theme-toggle {
-      width: 32px; height: 32px; border-radius: 50%;
-      border: 1px solid var(--border); background: none;
-      color: var(--yellow); cursor: pointer; margin-left: 14px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 14px; flex-shrink: 0;
-      transition: border-color 0.2s, transform 0.2s;
-    }
-    .theme-toggle:hover { border-color: rgba(var(--accent-rgb),0.4); transform: rotate(15deg); }
 
     /* hamburger */
     .nav-hamburger {
@@ -645,7 +613,6 @@
       .nav-links { display: none; }
       .nav-cta { display: none; }
       .nav-hamburger { display: flex; }
-      .theme-toggle { margin-left: auto; }
       .hero-content { padding: 0 20px 44px; }
       .stat-row { grid-template-columns: 1fr 1fr; }
       .hero { height: 88vh; min-height: 520px; }
@@ -680,7 +647,6 @@
     <li><a href="donate.html">บริจาค</a></li>
     <li><a href="https://forms.gle/ir2cG4w7jTnj2szc9" target="_blank" class="nav-cta">สมัคร →</a></li>
   </ul>
-  <button class="theme-toggle" id="theme-toggle" aria-label="สลับโหมดสว่าง/มืด">☀</button>
   <button class="nav-hamburger" id="hamburger" onclick="toggleMenu()" aria-label="เมนู">
     <span></span><span></span><span></span>
   </button>
@@ -1030,28 +996,6 @@
 <button class="scroll-top" id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="กลับขึ้นบน">↑</button>
 
 <script>
-  /* theme toggle */
-  (function(){
-    var btn = document.getElementById('theme-toggle');
-    function apply(theme){
-      document.documentElement.setAttribute('data-theme', theme);
-      btn.textContent = theme === 'light' ? '☾' : '☀';
-      btn.setAttribute('aria-label', theme === 'light' ? 'สลับเป็นโหมดมืด' : 'สลับเป็นโหมดสว่าง');
-    }
-    apply(document.documentElement.getAttribute('data-theme') || 'dark');
-    btn.addEventListener('click', function(){
-      var next = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
-      localStorage.setItem('cmu-theme', next);
-      apply(next);
-    });
-    // ถ้ายังไม่เคยเลือกเอง ให้ตามการตั้งค่าเครื่อง/เบราว์เซอร์แบบเรียลไทม์
-    if (!localStorage.getItem('cmu-theme') && window.matchMedia) {
-      window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', function(e){
-        if (!localStorage.getItem('cmu-theme')) apply(e.matches ? 'light' : 'dark');
-      });
-    }
-  })();
-
   /* hamburger */
   function toggleMenu() {
     var m = document.getElementById('nav-mobile');
