@@ -8,7 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;600;700&family=IBM+Plex+Sans+Thai+Condensed:wght@700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --dark:    #1a1228;
+      --dark:    #0d0b14;
       --dark2:   #1a1528;
       --yellow:  #f1c40f;
       --yellow2: #e6b800;
@@ -25,9 +25,9 @@
     .nav-logo { font-family: 'IBM Plex Sans Thai Condensed', sans-serif; font-size: 17px; font-weight: 700; letter-spacing: 0.14em; color: var(--yellow); text-decoration: none; display: flex; align-items: center; gap: 10px; }
     .nav-logo img { width: 32px; height: 32px; object-fit: contain; }
     .nav-links { display: flex; gap: 0; list-style: none; }
-    .nav-links a { font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(240,237,232,0.55); text-decoration: none; padding: 8px 16px; border-left: 1px solid var(--border); transition: color 0.15s; }
+    .nav-links a { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(240,237,232,0.55); text-decoration: none; padding: 8px 16px; border-left: 1px solid var(--border); transition: color 0.15s; }
     .nav-links a:hover, .nav-links a.active { color: var(--white); }
-    .nav-cta, .nav-links a.nav-cta { font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; background: var(--yellow); color: #0d0b14; padding: 8px 18px; border-radius: 2px; text-decoration: none; transition: background 0.15s; }
+    .nav-cta, .nav-links a.nav-cta { font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; background: var(--yellow); color: #0d0b14; padding: 8px 18px; border-radius: 2px; text-decoration: none; transition: background 0.15s; }
     .nav-cta:hover, .nav-links a.nav-cta:hover { background: var(--yellow2); color: #0d0b14; }
     .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
     .nav-hamburger span { display: block; width: 24px; height: 2px; background: var(--white); border-radius: 2px; transition: all 0.3s; }
@@ -37,13 +37,13 @@
     .nav-mobile { display: none; position: fixed; top: 61px; left: 0; right: 0; bottom: 0; background: var(--dark); z-index: 99; flex-direction: column; padding: 32px 24px; border-top: 1px solid var(--border); overflow-y: auto; }
     .nav-mobile.open { display: flex; }
     .nav-mobile ul { list-style: none; display: flex; flex-direction: column; gap: 4px; margin-bottom: 24px; }
-    .nav-mobile ul li a { display: block; padding: 14px 0; font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(240,237,232,0.5); text-decoration: none; border-bottom: 1px solid var(--border); transition: color 0.2s; }
+    .nav-mobile ul li a { display: block; padding: 14px 0; font-family: 'IBM Plex Mono', monospace; font-size: 15px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(240,237,232,0.5); text-decoration: none; border-bottom: 1px solid var(--border); transition: color 0.2s; }
     .nav-mobile ul li a:hover { color: var(--white); }
-    .nav-mobile .nav-cta-mobile { display: block; text-align: center; background: var(--yellow); color: #0d0b14; padding: 14px; border-radius: 2px; font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 700; letter-spacing: 0.12em; text-decoration: none; }
+    .nav-mobile .nav-cta-mobile { display: block; text-align: center; background: var(--yellow); color: #0d0b14; padding: 14px; border-radius: 2px; font-family: 'IBM Plex Mono', monospace; font-size: 15px; font-weight: 700; letter-spacing: 0.12em; text-decoration: none; }
 
     /* PAGE HEADER */
     .page-header { padding: 40px 40px 28px; border-bottom: 1px solid var(--border); max-width: 1100px; margin: 0 auto; }
-    .page-eyebrow { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(241,196,15,0.5); margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+    .page-eyebrow { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(241,196,15,0.5); margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
     .page-eyebrow::before { content: '//'; color: rgba(241,196,15,0.22); }
     .page-title { font-family: 'IBM Plex Sans Thai Condensed', sans-serif; font-size: clamp(32px, 6vw, 56px); font-weight: 700; letter-spacing: 0.02em; color: var(--white); margin-bottom: 8px; }
     .page-sub { font-size: 14px; font-weight: 300; color: rgba(240,237,232,0.4); }
@@ -72,31 +72,31 @@
     .day-route-title span { color: var(--yellow); }
     .day-km { text-align: right; }
     .day-km-num { font-family: 'IBM Plex Mono', monospace; font-size: 32px; font-weight: 600; color: var(--yellow); line-height: 1; letter-spacing: -0.02em; }
-    .day-km-sub { font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(241,196,15,0.4); margin-top: 3px; }
+    .day-km-sub { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(241,196,15,0.4); margin-top: 3px; }
 
     /* MAP EMBED */
     .map-wrap { border: 1px solid var(--border); margin-bottom: 24px; overflow: hidden; background: var(--card); }
     .map-wrap iframe { width: 100%; height: 460px; display: block; border: none; }
 
     /* CHECKPOINT TABLE */
-    .table-label { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(241,196,15,0.45); margin-bottom: 14px; display: flex; align-items: center; gap: 6px; }
+    .table-label { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(241,196,15,0.45); margin-bottom: 14px; display: flex; align-items: center; gap: 6px; }
     .table-label::before { content: '//'; opacity: 0.5; }
     .cp-table-wrap { border: 1px solid var(--border); overflow-x: auto; margin-bottom: 12px; }
     .cp-table { width: 100%; border-collapse: collapse; min-width: 640px; }
     .cp-table th {
-      font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase;
+      font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
       color: rgba(241,196,15,0.5); text-align: left; padding: 10px 14px;
       border-bottom: 1px solid var(--border); background: rgba(241,196,15,0.03); white-space: nowrap;
     }
     .cp-table td {
-      font-size: 13px; font-weight: 300; color: rgba(240,237,232,0.75); padding: 10px 14px;
+      font-size: 15px; font-weight: 300; color: rgba(240,237,232,0.75); padding: 10px 14px;
       border-bottom: 1px solid var(--border); white-space: nowrap;
     }
     .cp-table tr:last-child td { border-bottom: none; }
     .cp-table tr:hover td { background: rgba(241,196,15,0.02); }
     .cp-name { font-weight: 600; color: var(--white); white-space: normal !important; min-width: 180px; }
     .cp-num { font-family: 'IBM Plex Mono', monospace; color: rgba(241,196,15,0.6); }
-    .cp-idx { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: rgba(240,237,232,0.25); width: 24px; }
+    .cp-idx { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: rgba(240,237,232,0.25); width: 24px; }
     .cp-note { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: rgba(240,237,232,0.3); margin-top: 10px; }
 
     /* COMING SOON */
@@ -112,7 +112,7 @@
       .page-header, .main { padding-left: 20px; padding-right: 20px; }
       .map-wrap iframe { height: 320px; }
       .day-tabs { gap: 4px; }
-      .day-tab { padding: 8px 12px; font-size: 10px; }
+      .day-tab { padding: 8px 12px; font-size: 11px; }
     }
   </style>
 </head>
@@ -240,7 +240,7 @@
 
 <footer style="border-top:1px solid var(--border);padding:36px 40px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;max-width:1100px;margin:0 auto;">
   <a href="index.html" style="font-family:'IBM Plex Sans Thai Condensed',sans-serif;font-weight:700;font-size:17px;letter-spacing:0.14em;color:var(--yellow);text-decoration:none;">CMU CHARITY CYCLING</a>
-  <p style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.1em;color:rgba(240,237,232,0.16);">© 2569 สมาคมนักศึกษาเก่า มหาวิทยาลัยเชียงใหม่</p>
+  <p style="font-family:'IBM Plex Mono',monospace;font-size: 10px;letter-spacing:0.1em;color:rgba(240,237,232,0.16);">© 2569 สมาคมนักศึกษาเก่า มหาวิทยาลัยเชียงใหม่</p>
 </footer>
 
 <script>
