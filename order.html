@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <link rel="icon" type="image/png" href="logo.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>สั่งซื้อของที่ระลึก (Pre-Order) — CMU Charity Cycling</title>
+  <title>สั่งซื้อของที่ระลึก — CMU Charity Cycling</title>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;600;700&family=IBM+Plex+Sans+Thai+Condensed:wght@700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -402,6 +402,40 @@
   var isSubmitting = false;
   function blockUnload(e){ e.preventDefault(); e.returnValue = 'ข้อมูลกำลังบันทึก อย่าเพิ่งปิดหน้านี้'; return e.returnValue; }
 
+  function compressImage(file){
+    return new Promise(function(resolve, reject){
+      var img = new Image();
+      var reader = new FileReader();
+      reader.onload = function(e){
+        img.onload = function(){
+          var maxDim = 1400;
+          var w = img.width, h = img.height;
+          if (w > maxDim || h > maxDim){
+            if (w > h){ h = Math.round(h * maxDim / w); w = maxDim; }
+            else { w = Math.round(w * maxDim / h); h = maxDim; }
+          }
+          var canvas = document.createElement('canvas');
+          canvas.width = w; canvas.height = h;
+          var ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, w, h);
+          var dataUrl = canvas.toDataURL('image/jpeg', 0.72);
+          resolve(dataUrl.split(',')[1]);
+        };
+        img.onerror = function(){ reject(new Error('ไม่สามารถอ่านไฟล์รูปได้')); };
+        img.src = e.target.result;
+      };
+      reader.onerror = function(){ reject(new Error('ไม่สามารถอ่านไฟล์ได้')); };
+      reader.readAsDataURL(file);
+    });
+  }
+
+  function fetchWithTimeout(url, options, ms){
+    var controller = new AbortController();
+    var timer = setTimeout(function(){ controller.abort(); }, ms);
+    return fetch(url, Object.assign({}, options, { signal: controller.signal }))
+      .finally(function(){ clearTimeout(timer); });
+  }
+
   async function sendData(){
     var btn=document.getElementById('btn'), total=calc();
     if(total===0)return alert("กรุณาเลือกสินค้าอย่างน้อย 1 ชิ้น");
@@ -415,17 +449,21 @@
     PRODUCTS.forEach(function(p,pIdx){ p.variants.forEach(function(v,vIdx){ v.sizes.forEach(function(s){ var q=getQty(pIdx,vIdx,s); if(q>0)details.push(p.nameDisplay+'('+v.gender+')-'+s+'('+q+')'); }); }); });
     try{
       var file=document.getElementById('fileInput').files[0];
-      var base64=await new Promise(function(r){ var rd=new FileReader(); rd.onload=function(){r(rd.result.split(',')[1]);}; rd.readAsDataURL(file); });
-      var payload={ name:document.getElementById('name').value, tel:"'"+document.getElementById('tel').value, address:document.getElementById('address').value, email:document.getElementById('email').value, total:total, details:details.join(", "), fileData:base64, fileName:file.name, mimeType:file.type };
-      await fetch(WEB_APP_URL,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain"},body:JSON.stringify(payload)});
+      var base64=await compressImage(file);
+      var payload={ name:document.getElementById('name').value, tel:"'"+document.getElementById('tel').value, address:document.getElementById('address').value, email:document.getElementById('email').value, total:total, details:details.join(", "), fileData:base64, fileName:file.name.replace(/\.[^.]+$/,'')+'.jpg', mimeType:'image/jpeg' };
+      await fetchWithTimeout(WEB_APP_URL,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain"},body:JSON.stringify(payload)}, 45000);
       isSubmitting = false;
       window.removeEventListener('beforeunload', blockUnload);
-      document.body.innerHTML='<div style="background:#0d0b14;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 20px;font-family:\'IBM Plex Sans Thai\',sans-serif;"><div style="font-family:\'IBM Plex Sans Thai Condensed\',sans-serif;font-size:96px;font-weight:700;color:#f1c40f;line-height:1;margin-bottom:20px;">✓</div><h2 style="font-family:\'IBM Plex Sans Thai Condensed\',sans-serif;font-size:42px;letter-spacing:0.06em;color:#f1c40f;margin-bottom:10px;font-weight:700;">สั่งซื้อสำเร็จ</h2><p style="font-size:15px;font-weight:300;color:rgba(240,237,232,0.5);margin-bottom:28px;">เราได้รับข้อมูลของคุณเรียบร้อยแล้ว สามารถเช็คข้อมูลการสั่งซื้อได้ที่ปุ่ม "เช็คสถานะการสั่งซื้อ"</p><div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;"><a href="status.html" style="background:#f1c40f;color:#0d0b14;padding:12px 28px;border-radius:2px;font-family:\'IBM Plex Sans Thai\';font-size:14px;font-weight:600;text-decoration:none;">เช็คสถานะการสั่งซื้อ</a><a href="index.html" style="border:1px solid rgba(241,196,15,0.4);color:#f1c40f;padding:12px 28px;border-radius:2px;font-family:\'IBM Plex Sans Thai\';font-size:14px;text-decoration:none;">← กลับหน้าหลัก</a></div></div>';
+      document.body.innerHTML='<div style="background:#0d0b14;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 20px;font-family:\'IBM Plex Sans Thai\',sans-serif;"><div style="font-family:\'IBM Plex Sans Thai Condensed\',sans-serif;font-size:96px;font-weight:700;color:#f1c40f;line-height:1;margin-bottom:20px;">✓</div><h2 style="font-family:\'IBM Plex Sans Thai Condensed\',sans-serif;font-size:42px;letter-spacing:0.06em;color:#f1c40f;margin-bottom:10px;font-weight:700;">สั่งซื้อสำเร็จ</h2><p style="font-size:15px;font-weight:300;color:rgba(240,237,232,0.5);margin-bottom:28px;">เราได้รับข้อมูลของคุณเรียบร้อยแล้ว ทีมงานจะติดต่อกลับเร็วๆ นี้</p><div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;"><a href="status.html" style="background:#f1c40f;color:#0d0b14;padding:12px 28px;border-radius:2px;font-family:\'IBM Plex Sans Thai\';font-size:14px;font-weight:600;text-decoration:none;">เช็คสถานะการสั่งซื้อ</a><a href="index.html" style="border:1px solid rgba(241,196,15,0.4);color:#f1c40f;padding:12px 28px;border-radius:2px;font-family:\'IBM Plex Sans Thai\';font-size:14px;text-decoration:none;">← กลับหน้าหลัก</a></div></div>';
     }catch(e){
       isSubmitting = false;
       window.removeEventListener('beforeunload', blockUnload);
       document.getElementById('processing-overlay').classList.remove('open');
-      alert("เกิดข้อผิดพลาด: "+e.message);
+      if (e.name === 'AbortError') {
+        alert("การอัปโหลดใช้เวลานานเกินไป (เกิน 45 วินาที) อาจเป็นเพราะสัญญาณอินเทอร์เน็ตช้า กรุณาลองใหม่อีกครั้ง หรือเปลี่ยนไปใช้ WiFi");
+      } else {
+        alert("เกิดข้อผิดพลาด: "+e.message);
+      }
       btn.disabled=false; btn.innerText="ยืนยันการสั่งซื้อ";
     }
   }
