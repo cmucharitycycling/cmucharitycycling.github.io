@@ -301,9 +301,9 @@
 
   function getInitials(name) {
     if (!name) return '?';
-    const parts = name.trim().split(' ');
+    const parts = String(name).trim().split(' ');
     if (parts.length >= 2) return (parts[0][0] + parts[1][0]).toUpperCase();
-    return name.substring(0, 2).toUpperCase();
+    return String(name).substring(0, 2).toUpperCase();
   }
 
   function renderCards() {
@@ -313,7 +313,7 @@
     const grid    = document.getElementById('grid');
 
     const filtered = allMembers.filter(m => {
-      const matchSearch  = !keyword || m.name.toLowerCase().includes(keyword) || (m.studentId || "").includes(keyword);
+      const matchSearch  = !keyword || String(m.name || "").toLowerCase().includes(keyword) || String(m.studentId || "").includes(keyword);
       const matchFaculty = !faculty || m.faculty === faculty || (faculty === "นักปั่นอิสระ" && !m.faculty);
       const matchType    = !type    || m.type === type;
       return matchSearch && matchFaculty && matchType;
@@ -334,6 +334,8 @@
            <div class="card-placeholder" style="display:none;"><div class="card-placeholder-icon">${getInitials(m.name)}</div></div>`
         : `<div class="card-placeholder"><div class="card-placeholder-icon">${getInitials(m.name)}</div></div>`;
 
+      const rideDateStr = m.rideDate ? String(m.rideDate).substring(0,10) : '';
+
       return `
         <div class="card" style="animation-delay:${delay}s">
           ${photoHtml}
@@ -343,7 +345,7 @@
             ${m.studentId ? `<div class="card-id">${m.studentId}</div>` : ''}
             <div class="card-tags">
               ${m.faculty  ? `<span class="tag tag-faculty" style="background:${getFacultyColor(m.faculty)};color:${getFacultyTextColor(getFacultyColor(m.faculty))};">${m.faculty}</span>` : ''}
-              ${m.rideDate ? `<span class="tag tag-date">${m.rideDate.substring(0,10)}</span>` : ''}
+              ${rideDateStr ? `<span class="tag tag-date">${rideDateStr}</span>` : ''}
             </div>
           </div>
         </div>`;
