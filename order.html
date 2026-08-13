@@ -16,15 +16,26 @@
       --muted:   rgba(240,237,232,0.5);
       --border:  rgba(255,255,255,0.07);
       --card:    rgba(255,255,255,0.03);
+      --purple:  #5b2b82;
+      --purple2: #43205f;
+      --paper:   #f6f3ed;
+      --surface: #ffffff;
+      --ink:     #211c28;
+      --ink2:    #655d6b;
+      --line:    #d9d3dc;
+      --focus:   #6a3194;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'IBM Plex Sans Thai', sans-serif; background: var(--dark); color: var(--white); min-height: 100vh; padding-top: 61px; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'IBM Plex Sans Thai', sans-serif; background: var(--paper); color: var(--ink); min-height: 100vh; padding-top: 65px; }
+    button, input, textarea { font: inherit; }
+    button:focus-visible, input:focus-visible, textarea:focus-visible, a:focus-visible { outline: 3px solid rgba(241,196,15,.55); outline-offset: 3px; }
 
     nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 16px 40px; background: var(--dark); border-bottom: 1px solid var(--border); }
     .nav-logo { font-family: 'IBM Plex Sans Thai Condensed', sans-serif; font-size: 17px; font-weight: 700; letter-spacing: 0.14em; color: var(--yellow); text-decoration: none; display: flex; align-items: center; gap: 10px; }
     .nav-logo img { width: 32px; height: 32px; object-fit: contain; }
     .nav-links { display: flex; gap: 0; list-style: none; }
-    .nav-links a { font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(240,237,232,0.38); text-decoration: none; padding: 8px 16px; border-left: 1px solid var(--border); transition: color 0.15s; }
+    .nav-links a { font-family: 'IBM Plex Sans Thai', sans-serif; font-size: 13px; font-weight:600; letter-spacing: 0.04em; color: rgba(240,237,232,0.76); text-decoration: none; padding: 8px 16px; border-left: 1px solid var(--border); transition: color 0.15s; }
     .nav-links a:hover, .nav-links a.active { color: var(--white); }
     .nav-cta, .nav-links a.nav-cta { font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; background: var(--yellow); color: #0d0b14; padding: 8px 18px; border-radius: 2px; text-decoration: none; transition: background 0.15s; }
     .nav-cta:hover, .nav-links a.nav-cta:hover { background: var(--yellow2); color: #0d0b14; }
@@ -36,30 +47,37 @@
     .nav-mobile { display: none; position: fixed; top: 61px; left: 0; right: 0; bottom: 0; background: var(--dark); z-index: 99; flex-direction: column; padding: 32px 24px; border-top: 1px solid var(--border); overflow-y: auto; }
     .nav-mobile.open { display: flex; }
     .nav-mobile ul { list-style: none; display: flex; flex-direction: column; gap: 4px; margin-bottom: 24px; }
-    .nav-mobile ul li a { display: block; padding: 14px 0; font-family: 'IBM Plex Mono', monospace; font-size: 15px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(240,237,232,0.5); text-decoration: none; border-bottom: 1px solid var(--border); transition: color 0.2s; }
+    .nav-mobile ul li a { display: block; padding: 14px 0; font-family: 'IBM Plex Sans Thai', sans-serif; font-size: 16px; font-weight: 600; color: rgba(240,237,232,0.84); text-decoration: none; border-bottom: 1px solid var(--border); transition: color 0.2s; }
     .nav-mobile ul li a:hover { color: var(--white); }
     .nav-mobile .nav-cta-mobile { display: block; text-align: center; background: var(--yellow); color: #0d0b14; padding: 14px; border-radius: 2px; font-family: 'IBM Plex Mono', monospace; font-size: 15px; font-weight: 700; letter-spacing: 0.12em; text-decoration: none; }
 
-    .page-header { padding: 40px 40px 28px; border-bottom: 1px solid var(--border); max-width: 1200px; margin: 0 auto; }
-    .page-eyebrow { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(241,196,15,0.5); margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+    .page-header { padding: 54px max(40px, calc((100vw - 1120px) / 2)) 48px; border-bottom: 4px solid var(--yellow); margin: 0; background: radial-gradient(circle at 85% 20%, rgba(91,43,130,.6), transparent 34%), var(--dark); }
+    .page-eyebrow { font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--yellow); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
     .page-eyebrow::before { content: '//'; color: rgba(241,196,15,0.22); }
     .page-title { font-family: 'IBM Plex Sans Thai Condensed', sans-serif; font-size: clamp(32px, 6vw, 56px); font-weight: 700; letter-spacing: 0.02em; color: var(--white); }
+    .page-subtitle { max-width: 680px; margin-top: 12px; color: rgba(255,255,255,.76); font-size: 17px; line-height: 1.7; }
 
-    .main { max-width: 1200px; margin: 0 auto; padding: 32px 40px 60px; }
-    .section-eyebrow { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(241,196,15,0.4); margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
-    .section-eyebrow::before { content: '//'; color: rgba(241,196,15,0.2); }
-    .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 12px; margin-bottom: 48px; }
+    .main { max-width: 1200px; margin: 0 auto; padding: 42px 40px 72px; }
+    .order-steps { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-bottom:34px; }
+    .order-step { display:flex; align-items:center; gap:12px; padding:14px 16px; background:var(--surface); border:1px solid var(--line); color:var(--ink2); font-size:15px; font-weight:600; }
+    .order-step-num { display:grid; place-items:center; width:30px; height:30px; flex:0 0 30px; border-radius:50%; background:var(--purple); color:#fff; font-family:'IBM Plex Mono',monospace; font-size:13px; }
+    .section-heading { display:flex; justify-content:space-between; align-items:end; gap:24px; margin-bottom:20px; }
+    .section-title { font-family:'IBM Plex Sans Thai Condensed',sans-serif; font-size:clamp(28px,4vw,38px); color:var(--ink); line-height:1.15; }
+    .section-help { color:var(--ink2); font-size:16px; line-height:1.6; text-align:right; }
+    .section-eyebrow { font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight:600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--purple); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+    .section-eyebrow::before { content: '//'; color: var(--yellow2); }
+    .product-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-bottom: 42px; }
 
-    .pc { background: var(--card); border: 1px solid var(--border); position: relative; overflow: hidden; transition: border-color 0.15s; }
-    .pc:hover { border-color: rgba(241,196,15,0.2); }
+    .pc { background: var(--dark); border: 1px solid #2d2738; border-radius:14px; position: relative; overflow: hidden; transition: transform .2s, border-color 0.15s, box-shadow .2s; box-shadow:0 8px 24px rgba(32,24,39,.08); }
+    .pc:hover { border-color: rgba(241,196,15,0.55); transform:translateY(-2px); box-shadow:0 14px 34px rgba(32,24,39,.14); }
     .pc-ref { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: rgba(241,196,15,0.45); padding: 16px 16px 0; }
     .pc-ref-num { font-family: 'IBM Plex Mono', monospace; font-size: 20px; font-weight: 600; color: var(--yellow); letter-spacing: -0.02em; padding: 2px 16px 0; line-height: 1; }
     .pc-ref-line { width: 20px; height: 1px; background: var(--yellow); margin: 6px 16px 0; opacity: 0.35; }
     .pc-corner { position: absolute; top: 12px; right: 16px; display: flex; flex-direction: column; align-items: flex-end; gap: 1px; }
-    .pc-corner-line { font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.08em; color: rgba(240,237,232,0.12); }
+    .pc-corner-line { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.08em; color: rgba(240,237,232,0.35); }
 
     .pc-img-wrap { padding: 14px 16px 0; }
-    .pc-img-label { font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(240,237,232,0.2); margin-bottom: 6px; display: flex; align-items: center; gap: 5px; }
+    .pc-img-label { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(240,237,232,0.65); margin-bottom: 7px; display: flex; align-items: center; gap: 5px; }
     .pc-img-label::before { content: '//'; color: rgba(241,196,15,0.2); }
     .pc-img-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
     .pc-img { width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: top; display: block; background: var(--dark2); }
@@ -67,83 +85,89 @@
 
     .pc-meta { padding: 14px 16px 12px; }
     .pc-name { font-family: 'IBM Plex Sans Thai Condensed', sans-serif; font-size: clamp(18px, 2.5vw, 24px); font-weight: 700; color: var(--white); line-height: 1; letter-spacing: 0.01em; text-transform: uppercase; margin-bottom: 4px; }
-    .pc-sub { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(241,196,15,0.55); margin-bottom: 10px; }
-    .pc-fabric { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(240,237,232,0.25); line-height: 1.9; margin-bottom: 12px; }
+    .pc-sub { font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--yellow); margin-bottom: 10px; }
+    .pc-fabric { font-family: 'IBM Plex Sans Thai', sans-serif; font-size: 13px; letter-spacing: 0.04em; text-transform: uppercase; color: rgba(240,237,232,0.72); line-height: 1.65; margin-bottom: 12px; }
     .pc-price-row { display: flex; align-items: baseline; gap: 6px; margin-bottom: 6px; }
     .pc-price { font-family: 'IBM Plex Mono', monospace; font-size: 28px; font-weight: 600; color: var(--yellow); letter-spacing: -0.02em; line-height: 1; }
-    .pc-price-unit { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: rgba(241,196,15,0.45); letter-spacing: 0.1em; }
+    .pc-price-unit { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: rgba(241,196,15,0.78); letter-spacing: 0.1em; }
     .pc-barcode { display: flex; gap: 1px; margin: 8px 0 3px; height: 14px; align-items: flex-end; }
     .pc-bar { width: 1px; background: rgba(241,196,15,0.12); }
-    .pc-sku { font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.1em; color: rgba(240,237,232,0.18); }
+    .pc-sku { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: rgba(240,237,232,0.48); }
 
     .pc-divider { height: 1px; background: rgba(255,255,255,0.06); margin: 0 16px; }
 
     .pc-sizes { padding: 12px 16px 16px; }
     .pc-size-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
-    .pc-size-label { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(240,237,232,0.3); }
-    .pc-size-guide { font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #0d0b14; background: var(--yellow); border: none; cursor: pointer; padding: 5px 12px; border-radius: 2px; transition: background 0.15s; display: flex; align-items: center; gap: 5px; }
+    .pc-size-label { font-family: 'IBM Plex Sans Thai', sans-serif; font-size: 15px; font-weight:600; color: var(--white); }
+    .pc-size-guide { font-family: 'IBM Plex Sans Thai', sans-serif; font-size: 14px; font-weight: 600; color: #0d0b14; background: var(--yellow); border: none; cursor: pointer; min-height:38px; padding: 7px 13px; border-radius: 6px; transition: background 0.15s; display: flex; align-items: center; gap: 5px; }
     .pc-size-guide:hover { background: var(--yellow2); }
     .pc-size-guide::after { content: '→'; }
-    .gender-tag { font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; padding: 3px 8px; border-radius: 1px; display: inline-block; margin: 8px 0 6px; }
+    .gender-tag { font-family: 'IBM Plex Sans Thai', sans-serif; font-size: 13px; font-weight:600; letter-spacing: .04em; padding: 4px 9px; border-radius: 4px; display: inline-block; margin: 10px 0 7px; }
     .gender-tag-m { background: rgba(74,158,255,0.08); color: #4a9eff; border: 1px solid rgba(74,158,255,0.18); }
     .gender-tag-f { background: rgba(241,196,15,0.08); color: var(--yellow); border: 1px solid rgba(241,196,15,0.18); }
-    .gender-tag-u { background: rgba(255,255,255,0.04); color: rgba(240,237,232,0.38); border: 1px solid rgba(255,255,255,0.07); }
-    .size-row { display: flex; align-items: center; justify-content: space-between; border: 1px solid rgba(255,255,255,0.06); padding: 7px 10px; margin-bottom: 4px; transition: border-color 0.12s, background 0.12s; }
+    .gender-tag-u { background: rgba(255,255,255,0.08); color: rgba(240,237,232,0.82); border: 1px solid rgba(255,255,255,0.18); }
+    .size-row { display: flex; align-items: center; justify-content: space-between; border: 1px solid rgba(255,255,255,0.14); min-height:50px; padding: 4px 6px 4px 12px; margin-bottom: 6px; border-radius:7px; transition: border-color 0.12s, background 0.12s; }
     .size-row.has-qty { border-color: rgba(241,196,15,0.35); background: rgba(241,196,15,0.03); }
-    .size-name { font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600; color: var(--white); letter-spacing: 0.1em; min-width: 36px; }
-    .size-chest { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: rgba(240,237,232,0.3); letter-spacing: 0.06em; flex: 1; padding-left: 8px; }
+    .size-name { font-family: 'IBM Plex Mono', monospace; font-size: 14px; font-weight: 600; color: var(--white); letter-spacing: 0.06em; min-width: 42px; }
+    .size-chest { font-family: 'IBM Plex Sans Thai', sans-serif; font-size: 14px; color: rgba(240,237,232,0.72); flex: 1; padding-left: 8px; }
     .qty-ctrl { display: flex; align-items: center; }
-    .qty-btn { width: 26px; height: 26px; border: 1px solid rgba(255,255,255,0.07); background: rgba(255,255,255,0.04); color: var(--white); font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.12s; font-family: monospace; }
+    .qty-btn { width: 42px; height: 42px; border: 1px solid rgba(255,255,255,0.2); border-radius:6px; background: rgba(255,255,255,0.08); color: var(--white); font-size: 22px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.12s; font-family: monospace; }
     .qty-btn:hover { border-color: var(--yellow); color: var(--yellow); background: rgba(241,196,15,0.08); }
-    .qty-num { width: 32px; text-align: center; font-family: 'IBM Plex Mono', monospace; font-size: 15px; font-weight: 600; color: rgba(240,237,232,0.4); }
+    .qty-num { width: 38px; text-align: center; font-family: 'IBM Plex Mono', monospace; font-size: 16px; font-weight: 600; color: rgba(240,237,232,0.75); }
     .qty-num.nz { color: var(--yellow); }
-    .pc-ref-tag { font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(241,196,15,0.25); text-align: right; padding: 8px 16px 0; display: block; }
+    .pc-ref-tag { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(241,196,15,0.6); text-align: right; padding: 8px 16px 12px; display: block; }
+    .pc-toggle { display:none; }
 
-    .total-bar { position: sticky; bottom: 16px; z-index: 50; background: rgba(13,11,20,0.94); border: 1px solid rgba(241,196,15,0.25); backdrop-filter: blur(12px); padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; margin: 0 0 32px; }
-    .total-label { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(240,237,232,0.35); }
-    .total-amount { font-family: 'IBM Plex Mono', monospace; font-size: 28px; font-weight: 600; color: var(--yellow); letter-spacing: -0.01em; }
+    .total-bar { position: sticky; bottom: 16px; z-index: 50; max-width:820px; background: rgba(33,28,40,0.97); border: 2px solid var(--yellow); border-radius:12px; backdrop-filter: blur(12px); padding: 15px 22px; display: flex; align-items: center; justify-content: space-between; margin: 0 auto 28px; box-shadow:0 12px 34px rgba(33,28,40,.22); }
+    .total-label { font-size: 16px; font-weight:600; color: rgba(255,255,255,.88); }
+    .total-amount { font-family: 'IBM Plex Mono', monospace; font-size: 30px; font-weight: 600; color: var(--yellow); letter-spacing: -0.01em; }
 
-    .order-summary { background: rgba(241,196,15,0.04); border: 1px solid rgba(241,196,15,0.15); padding: 16px 20px; margin-bottom: 24px; }
-    .summary-label { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(241,196,15,0.45); margin-bottom: 12px; display: flex; align-items: center; gap: 6px; }
+    .order-summary { max-width:820px; background: #fff9dc; border: 1px solid #e6c94d; border-radius:12px; padding: 18px 20px; margin: 0 auto 18px; color:var(--ink); }
+    .summary-label { font-size: 16px; font-weight:700; color: var(--purple); margin-bottom: 12px; display: flex; align-items: center; gap: 6px; }
     .summary-label::before { content: '//'; opacity: 0.5; }
 
-    .form-section { border-top: 1px solid var(--border); padding-top: 32px; }
-    .form-section-label { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(241,196,15,0.45); margin: 28px 0 16px; display: flex; align-items: center; gap: 10px; }
-    .form-section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
-    .form-group { margin-bottom: 14px; }
-    .form-label { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(240,237,232,0.3); display: block; margin-bottom: 8px; }
-    .form-input { width: 100%; padding: 12px 16px; background: var(--card); border: 1px solid var(--border); color: var(--white); font-family: 'IBM Plex Sans Thai'; font-size: 14px; outline: none; transition: border-color 0.15s; border-radius: 0; }
-    .form-input:focus { border-color: rgba(241,196,15,0.4); }
-    .form-input::placeholder { color: rgba(255,255,255,0.18); }
+    .form-section { max-width:820px; margin:0 auto; background:var(--surface); border:1px solid var(--line); border-radius:16px; padding:12px 34px 34px; box-shadow:0 16px 44px rgba(33,28,40,.08); counter-reset:checkout-step; }
+    .form-section-label { counter-increment:checkout-step; font-family:'IBM Plex Sans Thai',sans-serif; font-size: 21px; font-weight:700; color: var(--ink); margin: 30px 0 18px; display: flex; align-items: center; gap: 12px; }
+    .form-section-label::before { content:counter(checkout-step); display:grid; place-items:center; width:34px; height:34px; flex:0 0 34px; border-radius:50%; background:var(--purple); color:#fff; font-family:'IBM Plex Mono',monospace; font-size:14px; }
+    .form-section-label::after { content: ''; flex: 1; height: 1px; background: var(--line); }
+    .form-group { margin-bottom: 18px; }
+    .form-label { font-size: 16px; font-weight:600; color: var(--ink); display: block; margin-bottom: 7px; }
+    .form-input { width: 100%; min-height:54px; padding: 13px 15px; background: #fff; border: 2px solid #bdb5c2; color: var(--ink); font-family: 'IBM Plex Sans Thai',sans-serif; font-size: 16px; outline: none; transition: border-color .15s, box-shadow .15s; border-radius: 8px; }
+    .form-input:hover { border-color:#8d8194; }
+    .form-input:focus { border-color: var(--focus); box-shadow:0 0 0 4px rgba(106,49,148,.14); }
+    .form-input::placeholder { color: #817886; opacity:1; }
+    .form-note { margin-top:6px; color:var(--ink2); font-size:14px; line-height:1.5; }
+    .form-error { display:none; margin:20px 0 4px; padding:13px 15px; border:1px solid #d92d20; border-radius:8px; background:#fff1f0; color:#912018; font-size:15px; font-weight:600; }
+    .form-error.show { display:block; }
 
     .ship-opts { display: flex; flex-direction: column; gap: 8px; }
-    .ship-opt { display: flex; align-items: center; gap: 12px; background: var(--card); border: 1px solid var(--border); padding: 12px 16px; cursor: pointer; transition: border-color 0.15s; }
-    .ship-opt:has(input:checked) { border-color: rgba(241,196,15,0.35); background: rgba(241,196,15,0.03); }
-    .ship-opt input[type="radio"] { accent-color: var(--yellow); width: 15px; height: 15px; }
-    .ship-opt-text { font-size: 15px; font-weight: 300; color: var(--white); }
+    .ship-opt { display: flex; align-items: flex-start; gap: 13px; background: #fff; border: 2px solid var(--line); border-radius:9px; padding: 15px 16px; cursor: pointer; transition: border-color 0.15s, background .15s; }
+    .ship-opt:has(input:checked) { border-color: var(--purple); background: #f7f0fb; }
+    .ship-opt input[type="radio"] { accent-color: var(--purple); width: 20px; height: 20px; flex:0 0 auto; margin-top:2px; }
+    .ship-opt-text { font-size: 16px; font-weight: 400; color: var(--ink); line-height:1.55; }
 
-    .payment-box { background: var(--card); border: 1px solid var(--border); padding: 24px; text-align: center; }
-    .payment-title { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(241,196,15,0.5); margin-bottom: 4px; }
-    .payment-acct { font-family: 'IBM Plex Mono', monospace; font-size: 18px; font-weight: 600; color: var(--yellow); letter-spacing: 0.08em; margin: 6px 0; }
-    .payment-sub { font-size: 14px; font-weight: 300; color: rgba(240,237,232,0.4); margin-bottom: 16px; }
-    .payment-box img { max-width: 180px; border: 1px solid var(--border); margin: 0 auto 14px; display: block; }
-    .payment-warn { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #ff6b6b; letter-spacing: 0.08em; }
+    .payment-box { background: #f7f0fb; border: 2px solid #d8c5e5; border-radius:12px; padding: 25px; text-align: center; }
+    .payment-title { font-size: 16px; font-weight:600; color: var(--ink); margin-bottom: 4px; }
+    .payment-acct { font-family: 'IBM Plex Mono', monospace; font-size: 25px; font-weight: 600; color: var(--purple); letter-spacing: 0.06em; margin: 8px 0 4px; }
+    .payment-sub { font-size: 16px; color: var(--ink2); margin-bottom: 16px; }
+    .payment-box img { width:min(220px,100%); border: 1px solid var(--line); border-radius:8px; margin: 0 auto 14px; display: block; }
+    .payment-warn { font-size: 15px; font-weight:600; color: #a3261d; }
 
-    .file-wrap { position: relative; background: var(--card); border: 1px dashed rgba(255,255,255,0.1); padding: 20px; text-align: center; cursor: pointer; transition: border-color 0.15s; }
-    .file-wrap:hover { border-color: rgba(241,196,15,0.3); }
+    .file-wrap { position: relative; background: #faf8fb; border: 2px dashed #9f90a8; border-radius:10px; padding: 24px 18px; text-align: center; cursor: pointer; transition: border-color 0.15s, background .15s; }
+    .file-wrap:hover { border-color: var(--purple); background:#f7f0fb; }
     .file-wrap input { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; }
-    .file-wrap-text { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(240,237,232,0.3); }
-    .file-wrap-text span { color: rgba(241,196,15,0.6); }
+    .file-wrap-text { font-size: 16px; font-weight:600; color: var(--ink); }
+    .file-wrap-text span { color: var(--purple); }
 
-    .btn-submit { width: 100%; padding: 16px; background: var(--yellow); color: #0d0b14; border: none; font-family: 'IBM Plex Sans Thai Condensed', sans-serif; font-size: 20px; font-weight: 700; letter-spacing: 0.1em; cursor: pointer; transition: background 0.15s, transform 0.12s; margin-top: 8px; border-radius: 0; }
-    .btn-submit:hover { background: var(--yellow2); transform: translateY(-2px); }
+    .btn-submit { width: 100%; min-height:58px; padding: 15px; background: var(--purple); color: #fff; border: none; font-family: 'IBM Plex Sans Thai Condensed', sans-serif; font-size: 21px; font-weight: 700; cursor: pointer; transition: background 0.15s, transform 0.12s; margin-top: 10px; border-radius: 9px; }
+    .btn-submit:hover { background: var(--purple2); transform: translateY(-2px); }
     .btn-submit:disabled { background: rgba(255,255,255,0.08); color: rgba(240,237,232,0.3); cursor: not-allowed; transform: none; }
 
     .modal-overlay { display: none; position: fixed; inset: 0; z-index: 999; background: rgba(0,0,0,0.88); align-items: center; justify-content: center; padding: 20px; }
     .modal-overlay.open { display: flex; }
     .modal-box { position: relative; max-width: 680px; width: 100%; }
     .modal-box img { width: 100%; display: block; }
-    .modal-close { position: absolute; top: -36px; right: 0; background: none; border: 1px solid rgba(255,255,255,0.2); color: var(--white); width: 28px; height: 28px; cursor: pointer; font-size: 14px; display: flex; align-items: center; justify-content: center; font-family: monospace; }
+    .modal-close { position: absolute; top: -52px; right: 0; background: var(--dark); border: 1px solid rgba(255,255,255,0.45); color: var(--white); width: 44px; height: 44px; border-radius:50%; cursor: pointer; font-size: 20px; display: flex; align-items: center; justify-content: center; font-family: monospace; }
 
     .processing-overlay { display: none; position: fixed; inset: 0; z-index: 9999; background: rgba(13,11,20,0.96); backdrop-filter: blur(4px); align-items: center; justify-content: center; padding: 24px; }
     .processing-overlay.open { display: flex; }
@@ -153,14 +177,54 @@
     .processing-title { font-family: 'IBM Plex Sans Thai Condensed', sans-serif; font-size: 22px; font-weight: 700; color: var(--yellow); letter-spacing: 0.04em; margin-bottom: 10px; }
     .processing-sub { font-size: 15px; font-weight: 300; color: rgba(240,237,232,0.55); line-height: 1.8; }
     .processing-warn { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #ff6b6b; margin-top: 18px; border: 1px solid rgba(255,107,107,0.25); background: rgba(255,107,107,0.06); padding: 10px 14px; }
+    footer { max-width:none !important; background:var(--dark); border-top:4px solid var(--yellow) !important; padding-left:max(40px,calc((100vw - 1120px)/2)) !important; padding-right:max(40px,calc((100vw - 1120px)/2)) !important; }
+    footer p { color:rgba(255,255,255,.68) !important; font-family:'IBM Plex Sans Thai',sans-serif !important; font-size:13px !important; letter-spacing:.02em !important; }
 
     @media (max-width: 768px) {
-      nav { padding: 14px 20px; }
+      body { padding-top:61px; }
+      nav { padding: 14px 18px; }
       .nav-links { display: none; }
       .nav-cta { display: none; }
       .nav-hamburger { display: flex; }
-      .page-header, .main { padding-left: 20px; padding-right: 20px; }
+      .nav-logo { font-size:14px; letter-spacing:.1em; }
+      .nav-logo img { width:28px; height:28px; }
+      .page-header { padding:36px 20px 34px; }
+      .page-title { font-size:36px; line-height:1.2; }
+      .page-subtitle { font-size:16px; }
+      .main { padding:28px 16px 60px; }
+      .order-steps { display:flex; overflow-x:auto; gap:8px; margin:0 -16px 28px; padding:0 16px 8px; scrollbar-width:none; }
+      .order-step { flex:0 0 auto; min-width:160px; padding:11px 13px; }
+      .section-heading { display:block; }
+      .section-help { text-align:left; margin-top:6px; }
       .product-grid { grid-template-columns: 1fr; }
+      .pc { display:grid; grid-template-columns:116px minmax(0,1fr); border-radius:12px; }
+      .pc-ref, .pc-ref-num, .pc-ref-line, .pc-corner, .pc-ref-tag, .pc-img-label, .pc-barcode, .pc-sku { display:none; }
+      .pc-img-wrap { grid-column:1; grid-row:1; padding:14px 0 14px 14px; }
+      .pc-img-grid { grid-template-columns:1fr; }
+      .pc-img-grid img:nth-child(2) { display:none; }
+      .pc-img, .pc-img-single { aspect-ratio:1/1; height:112px; object-fit:contain; border-radius:8px; }
+      .pc-meta { grid-column:2; grid-row:1; padding:17px 14px 12px; align-self:center; }
+      .pc-name { font-size:21px; line-height:1.08; }
+      .pc-sub { font-size:11px; }
+      .pc-fabric { display:none; }
+      .pc-price { font-size:25px; }
+      .pc-divider { display:none; }
+      .pc-toggle { display:flex; grid-column:1 / -1; align-items:center; justify-content:space-between; min-height:50px; padding:10px 14px; border:0; border-top:1px solid rgba(255,255,255,.14); background:rgba(255,255,255,.05); color:#fff; font-size:16px; font-weight:600; cursor:pointer; }
+      .pc-toggle::after { content:'+'; font-family:'IBM Plex Mono',monospace; font-size:22px; color:var(--yellow); }
+      .pc.open .pc-toggle::after { content:'−'; }
+      .pc-sizes { display:none; grid-column:1 / -1; padding:12px 14px 16px; border-top:1px solid rgba(255,255,255,.14); }
+      .pc.open .pc-sizes { display:block; }
+      .size-row { min-height:54px; }
+      .qty-btn { width:44px; height:44px; }
+      .order-summary, .total-bar, .form-section { width:100%; }
+      .total-bar { bottom:10px; padding:13px 16px; border-radius:10px; }
+      .total-label { font-size:15px; }
+      .total-amount { font-size:26px; }
+      .form-section { padding:8px 18px 24px; border-radius:12px; }
+      .form-section-label { font-size:20px; margin-top:26px; }
+      .ship-opt { padding:14px; }
+      .payment-box { padding:22px 16px; }
+      footer { padding:30px 20px !important; }
     }
   </style>
 </head>
@@ -198,10 +262,23 @@
 <div class="page-header">
   <div class="page-eyebrow">Merchandise</div>
   <h1 class="page-title">สั่งซื้อของที่ระลึก Pre-Order</h1>
+  <p class="page-subtitle">เลือกเสื้อและไซซ์ที่ต้องการ กรอกข้อมูล แล้วชำระเงินได้ในหน้าเดียว รายได้สนับสนุนกิจกรรม CMU Charity Cycling</p>
 </div>
 
 <div class="main">
-  <div class="section-eyebrow">PRODUCTS</div>
+  <div class="order-steps" aria-label="ขั้นตอนการสั่งซื้อ">
+    <div class="order-step"><span class="order-step-num">1</span><span>เลือกสินค้าและไซซ์</span></div>
+    <div class="order-step"><span class="order-step-num">2</span><span>กรอกข้อมูลผู้สั่งซื้อ</span></div>
+    <div class="order-step"><span class="order-step-num">3</span><span>ชำระเงินและแนบสลิป</span></div>
+  </div>
+
+  <div class="section-heading">
+    <div>
+      <div class="section-eyebrow">Products</div>
+      <h2 class="section-title">เลือกสินค้าและจำนวน</h2>
+    </div>
+    <p class="section-help">กด “เลือกไซซ์และจำนวน” ในสินค้าที่สนใจ<br>ดูตารางไซซ์ได้ก่อนตัดสินใจ</p>
+  </div>
   <div class="product-grid" id="product-list"></div>
 
   <div class="order-summary" id="order-summary" style="display:none">
@@ -209,7 +286,7 @@
     <div id="summary-list" style="display:flex;flex-direction:column;gap:8px;"></div>
   </div>
 
-  <div class="total-bar">
+  <div class="total-bar" aria-live="polite">
     <span class="total-label">ยอดชำระสุทธิ</span>
     <span class="total-amount">฿<span id="display_total">0</span></span>
   </div>
@@ -218,31 +295,32 @@
     <div class="form-section-label">วิธีการจัดส่ง</div>
     <div class="ship-opts">
       <label class="ship-opt">
-        <input type="radio" name="ship" value="0" checked onchange="calc()">
+        <input type="radio" id="ship-pickup" name="ship" value="0" checked onchange="calc();updateShipping()">
         <span class="ship-opt-text">รับด้วยตัวเองที่สมาคมนักศึกษาเก่า มช. (เชียงใหม่) — <strong>ฟรี</strong></span>
       </label>
       <label class="ship-opt">
-        <input type="radio" name="ship" value="0" onchange="calc()">
+        <input type="radio" id="ship-post" name="ship" value="0" onchange="calc();updateShipping()">
         <span class="ship-opt-text">จัดส่งด่วนทางไปรษณีย์ — <strong>ฟรี</strong></span>
       </label>
     </div>
 
     <div class="form-section-label">ข้อมูลผู้สั่งซื้อ</div>
     <div class="form-group">
-      <label class="form-label">ชื่อ-นามสกุล</label>
-      <input type="text" id="name" class="form-input" placeholder="กรอกชื่อ-นามสกุล">
+      <label class="form-label" for="name">ชื่อ-นามสกุล <span aria-hidden="true">*</span></label>
+      <input type="text" id="name" class="form-input" placeholder="เช่น สมชาย ใจดี" autocomplete="name">
     </div>
     <div class="form-group">
-      <label class="form-label">เบอร์โทรศัพท์</label>
-      <input type="tel" id="tel" class="form-input" placeholder="08xxxxxxxxx">
+      <label class="form-label" for="tel">เบอร์โทรศัพท์ <span aria-hidden="true">*</span></label>
+      <input type="tel" id="tel" class="form-input" placeholder="เช่น 0812345678" inputmode="tel" autocomplete="tel">
     </div>
     <div class="form-group">
-      <label class="form-label">อีเมล (สำหรับรับสรุปการสั่งซื้อ)</label>
-      <input type="email" id="email" class="form-input" placeholder="email@example.com">
+      <label class="form-label" for="email">อีเมล</label>
+      <input type="email" id="email" class="form-input" placeholder="email@example.com" inputmode="email" autocomplete="email">
+      <p class="form-note">สำหรับรับสรุปรายการสั่งซื้อและการติดต่อกลับ</p>
     </div>
-    <div class="form-group">
-      <label class="form-label">ที่อยู่จัดส่ง (กรณีเลือกจัดส่ง)</label>
-      <textarea id="address" class="form-input" placeholder="ที่อยู่โดยละเอียด พร้อมรหัสไปรษณีย์" style="height:90px;resize:none;"></textarea>
+    <div class="form-group" id="address-group" hidden>
+      <label class="form-label" for="address">ที่อยู่จัดส่ง</label>
+      <textarea id="address" class="form-input" placeholder="บ้านเลขที่ ถนน ตำบล/แขวง อำเภอ/เขต จังหวัด และรหัสไปรษณีย์" style="height:120px;resize:vertical;" autocomplete="street-address"></textarea>
     </div>
 
     <div class="form-section-label">ชำระเงิน</div>
@@ -250,7 +328,7 @@
       <div class="payment-title">สมาคมนักศึกษาเก่ามหาวิทยาลัยเชียงใหม่</div>
       <div class="payment-acct">227 211 6485</div>
       <div class="payment-sub">พร้อมเพย์ / ธนาคารไทยพาณิชย์</div>
-      <img src="https://raw.githubusercontent.com/cmucharitycycling/cmucharitycycling.github.io/main/images/QR_pay.png" alt="QR Code">
+      <img src="images/QR_pay.png" alt="QR Code สำหรับชำระเงิน">
       <p class="payment-warn">* ตรวจสอบ "ยอดชำระสุทธิ" ก่อนทำการโอนเงิน</p>
     </div>
 
@@ -259,7 +337,9 @@
       <input type="file" id="fileInput" accept="image/*" onchange="showFileName(this)">
       <div class="file-wrap-text">แนบสลิปโอนเงิน &nbsp;<span>คลิกหรือลากไฟล์มาวาง</span></div>
     </div>
-    <div id="file-name" style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--yellow);margin-top:8px;min-height:18px;letter-spacing:0.08em;"></div>
+    <div id="file-name" role="status" style="font-size:15px;font-weight:600;color:var(--purple);margin-top:8px;min-height:24px;"></div>
+
+    <div id="form-error" class="form-error" role="alert"></div>
 
     <button onclick="sendData()" id="btn" class="btn-submit">ยืนยันการสั่งซื้อ</button>
   </div>
@@ -336,9 +416,9 @@
             +'<span class="size-name">'+s+'</span>'
             +chestVal
             +'<div class="qty-ctrl">'
-            +'<button class="qty-btn" onclick="changeQty('+pIdx+','+vIdx+',\''+s+'\',-1)">−</button>'
-            +'<span class="qty-num" id="qty-'+pIdx+'-'+vIdx+'-'+s+'">0</span>'
-            +'<button class="qty-btn" onclick="changeQty('+pIdx+','+vIdx+',\''+s+'\',1)">+</button>'
+            +'<button class="qty-btn" aria-label="ลดจำนวน ไซซ์ '+s+'" onclick="changeQty('+pIdx+','+vIdx+',\''+s+'\',-1)">−</button>'
+            +'<span class="qty-num" aria-live="polite" id="qty-'+pIdx+'-'+vIdx+'-'+s+'">0</span>'
+            +'<button class="qty-btn" aria-label="เพิ่มจำนวน ไซซ์ '+s+'" onclick="changeQty('+pIdx+','+vIdx+',\''+s+'\',1)">+</button>'
             +'</div></div>';
         });
       });
@@ -346,7 +426,7 @@
       var nameHtml=p.nameMain.replace('\n','<br>');
       var fabricHtml=p.fabric.replace('\n','<br>');
 
-      list.innerHTML+='<div class="pc">'
+      list.innerHTML+='<div class="pc" id="product-'+pIdx+'">'
         +'<div class="pc-ref">REF.</div>'
         +'<div class="pc-ref-num">'+p.ref+'</div>'
         +'<div class="pc-ref-line"></div>'
@@ -360,10 +440,11 @@
         +'<div class="pc-barcode">'+makeBarcodeHtml()+'</div>'
         +'<div class="pc-sku">CMU.CYCLING.KIT.2026</div>'
         +'</div>'
+        +'<button class="pc-toggle" aria-expanded="false" aria-controls="sizes-'+pIdx+'" onclick="toggleProduct('+pIdx+',this)">เลือกไซซ์และจำนวน</button>'
         +'<div class="pc-divider"></div>'
-        +'<div class="pc-sizes">'
-        +'<div class="pc-size-head"><span class="pc-size-label">SIZE</span>'
-        +(p.sizeChart?'<button class="pc-size-guide" onclick="openSizeModal(\''+p.sizeChart+'\')">SIZE CHART</button>':'')
+        +'<div class="pc-sizes" id="sizes-'+pIdx+'">'
+        +'<div class="pc-size-head"><span class="pc-size-label">เลือกไซซ์</span>'
+        +(p.sizeChart?'<button class="pc-size-guide" onclick="openSizeModal(\''+p.sizeChart+'\')">ดูตารางไซซ์</button>':'')
         +'</div>'+varHtml+'</div>'
         +'<span class="pc-ref-tag">// REF.'+p.ref+'</span>'
         +'</div>';
@@ -388,16 +469,32 @@
     if(!keys.length){ sd.style.display='none'; }
     else{
       sd.style.display='block';
-      sl.innerHTML=keys.map(function(k){ return '<div style="font-size: 15px;font-weight:300;color:var(--white);display:flex;gap:8px;align-items:flex-start;"><span style="color:var(--yellow);flex-shrink:0;font-family:\'IBM Plex Mono\',monospace;">✓</span><span><span style="font-weight:600;">'+summaryMap[k].name+'</span> — '+summaryMap[k].items.join(', ')+'</span></div>'; }).join('');
+      sl.innerHTML=keys.map(function(k){ return '<div style="font-size:16px;color:var(--ink);line-height:1.55;display:flex;gap:8px;align-items:flex-start;"><span style="color:var(--purple);flex-shrink:0;font-weight:700;">✓</span><span><span style="font-weight:600;">'+summaryMap[k].name+'</span> — '+summaryMap[k].items.join(', ')+'</span></div>'; }).join('');
     }
     return total;
   }
 
   function openSizeModal(src){ document.getElementById('modal-img').src=src; document.getElementById('size-modal').classList.add('open'); }
   function closeSizeModal(e){ if(e.target.id==='size-modal')document.getElementById('size-modal').classList.remove('open'); }
+  function toggleProduct(index,button){
+    var card=document.getElementById('product-'+index), open=card.classList.toggle('open');
+    button.setAttribute('aria-expanded',open?'true':'false');
+    button.firstChild.nodeValue=open?'ซ่อนไซซ์และจำนวน':'เลือกไซซ์และจำนวน';
+  }
+  function updateShipping(){
+    var postal=document.getElementById('ship-post').checked;
+    document.getElementById('address-group').hidden=!postal;
+  }
   function toggleMenu(){ var m=document.getElementById('nav-mobile'),b=document.getElementById('hamburger'),open=m.classList.contains('open'); m.classList.toggle('open');b.classList.toggle('open'); document.body.style.overflow=open?'':'hidden'; }
   function closeMenu(){ document.getElementById('nav-mobile').classList.remove('open'); document.getElementById('hamburger').classList.remove('open'); document.body.style.overflow=''; }
   function showFileName(input){ document.getElementById('file-name').innerText=input.files[0]?'✓ '+input.files[0].name:''; }
+  function showFormError(message,element){
+    var box=document.getElementById('form-error');
+    box.textContent=message; box.classList.add('show');
+    if(element){ element.focus(); element.scrollIntoView({behavior:'smooth',block:'center'}); }
+    else { box.scrollIntoView({behavior:'smooth',block:'center'}); }
+  }
+  function clearFormError(){ var box=document.getElementById('form-error'); box.textContent=''; box.classList.remove('show'); }
 
   var isSubmitting = false;
   function blockUnload(e){ e.preventDefault(); e.returnValue = 'ข้อมูลกำลังบันทึก อย่าเพิ่งปิดหน้านี้'; return e.returnValue; }
@@ -438,9 +535,13 @@
 
   async function sendData(){
     var btn=document.getElementById('btn'), total=calc();
-    if(total===0)return alert("กรุณาเลือกสินค้าอย่างน้อย 1 ชิ้น");
-    if(!document.getElementById('name').value||!document.getElementById('tel').value)return alert("กรุณากรอกชื่อและเบอร์โทรศัพท์");
-    if(document.getElementById('fileInput').files.length===0)return alert("กรุณาแนบสลิปโอนเงิน");
+    var nameInput=document.getElementById('name'), telInput=document.getElementById('tel'), addressInput=document.getElementById('address');
+    clearFormError();
+    if(total===0)return showFormError("กรุณาเลือกสินค้าและจำนวนอย่างน้อย 1 ชิ้น");
+    if(!nameInput.value.trim())return showFormError("กรุณากรอกชื่อ-นามสกุล",nameInput);
+    if(!telInput.value.trim())return showFormError("กรุณากรอกเบอร์โทรศัพท์",telInput);
+    if(document.getElementById('ship-post').checked&&!addressInput.value.trim())return showFormError("กรุณากรอกที่อยู่สำหรับจัดส่ง",addressInput);
+    if(document.getElementById('fileInput').files.length===0)return showFormError("กรุณาแนบสลิปโอนเงิน");
     btn.disabled=true; btn.innerText="กำลังบันทึกข้อมูล...";
     isSubmitting = true;
     window.addEventListener('beforeunload', blockUnload);
@@ -469,6 +570,7 @@
   }
 
   init();
+  updateShipping();
 </script>
 </body>
 </html>
